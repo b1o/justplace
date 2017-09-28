@@ -1,0 +1,63 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Current time</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="responseUsers">
+      <tr *ngFor="let user of responseUsers; let i = index">
+        <th class="p-2 align-middle" scope="row">{{i + 1}}</th>
+        <td class="p-2 align-middle">{{user.name}}</td>
+        <td class="p-2 align-middle">{{user.email}}</td>
+        <td class="p-2 align-middle"></td>
+        <td class="p-2 align-middle">
+            <button 
+                class="btn btn-sm blue-gradient btn-rounded waves-light" 
+                mdbRippleRadius
+                (click)="form.show()" >
+                    {{btn}}
+            </button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-newspaper-o"></i> Subscription form</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="form27" class="form-control">
+                    <label for="form27">Your name</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input mdbActive type="text" id="form28" class="form-control">
+                    <label for="form28">Your email</label>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-1 waves-light" mdbRippleRadius>Submit <i class="fa fa-check ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
