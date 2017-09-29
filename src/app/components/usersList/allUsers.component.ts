@@ -1,17 +1,25 @@
+import { UsersService } from '../../services/users.service';
+import { StartModalComponent } from '../modal/startModal.component';
 import { NetworkService } from '../../services/network.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'all-users-list',
     templateUrl: 'allUsers.component.html'
 })
 export class AllUsersComponent {
+    @ViewChild(StartModalComponent) startModal: StartModalComponent;
+
     private allUsersPath = 'users';
-    private timerPath = 'timer/';
     private responseUsers;
     private btn = "start";
+    private currentUser;
+    
 
-    constructor (private networkService: NetworkService) {}
+    constructor (
+        private networkService: NetworkService, 
+        private usersService: UsersService
+    ) {}
 
     ngOnInit () {
         this.getAllUsers ();
@@ -22,16 +30,11 @@ export class AllUsersComponent {
             .get(this.allUsersPath)
             .subscribe(res => {
                 console.log(res.obj)
-                this.responseUsers = res.obj;
+                this.responseUsers = res.obj.object;
             })
-    }
+    }   
 
-    startStop (id) {
-        console.log(id)
-        this.networkService
-            .post(`${this.timerPath}${id}`, id)
-            .subscribe(res => {
-                console.log(res)
-            })
+    stop (id) {
+        this.currentUser = id;
     }
 }

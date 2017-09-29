@@ -1,0 +1,39 @@
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" (onHide)="onHide()">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header blue-gradient darken-3 white-text">
+                <h4 class="title"><i class="fa fa-newspaper-o"></i> Описание на играта</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-comment prefix"></i>
+                    <input mdbActive type="text" id="form28" class="form-control" [(ngModel)]="description">
+                    <label for="form28">Описание</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-child prefix"></i>
+                    <input mdbActive type="number" min='1' id="form27" class="form-control" [(ngModel)]="userCount">
+                    <label for="form27">Брой играчи</label>
+                    <a (click)=plus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-plus"></i></a>
+                    <a (click)=minus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-minus"></i></a>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-1 blue-gradient waves-light" mdbRippleRadius (click)="start(form)">Старт <i class="fa fa-check ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

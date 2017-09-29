@@ -16,16 +16,18 @@ export class LoginComponent implements OnInit {
         private router: Router
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.authService
+            .user
+            .subscribe(data => {
+                if (data["status"]) {
+                    this.router.navigateByUrl('users')
+                } 
+            })
+    }
 
     login () {
-        console.log(this.user)
         this.authService
             .login(this.user)
-            .subscribe(res => {
-                if (res.obj === true) {
-                    this.router.navigateByUrl('users')
-                }
-            })
     }
 }

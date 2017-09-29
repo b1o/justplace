@@ -1,3 +1,6 @@
+import { ListItemComponent } from './components/listItems/listItem.component';
+import { UsersService } from './services/users.service';
+import { StartModalComponent } from './components/modal/startModal.component';
 import { AllUsersComponent } from './components/usersList/allUsers.component';
 import { RoutesModule } from './routes.module';
 import { LoginComponent } from './components/login/login.component';
@@ -20,7 +23,9 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
   declarations: [
     AppComponent,
     LoginComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    StartModalComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
   providers: [
     MDBSpinningPreloader,
     AuthService,
-    NetworkService
+    NetworkService,
+    UsersService
   ],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
