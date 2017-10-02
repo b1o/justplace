@@ -1,1 +1,15 @@
-<h1>{{user.name}}</h1>
+<th class="p-2 align-middle" scope="row">
+    1</th>
+<td class="p-2 align-middle">{{user.name}}</td>
+<td class="p-2 align-middle">{{user.email}}</td>
+<td class="p-2 align-middle"></td>
+<td class="p-2 align-middle">
+    <button *ngIf="!user.currentSession" class="btn btn-sm blue-gradient btn-rounded waves-light" mdbRippleRadius (click)="startModal.open(user.id)">
+        Старт
+    </button>
+    <button *ngIf="user.currentSession" class="btn btn-sm peach-gradient btn-rounded waves-light" mdbRippleRadius (click)="stop(user.id)">
+        Стоп
+    </button>
+</td>
+
+<start-modal #startModal></start-modal>

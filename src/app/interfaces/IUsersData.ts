@@ -1,4 +1,4 @@
 export interface IUsersData {
-    userId: String,
-    isActive: boolean
+    obj: object,
+    status: boolean
 }

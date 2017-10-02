@@ -8,8 +8,7 @@ import { Component, ViewChild } from '@angular/core';
     templateUrl: 'allUsers.component.html'
 })
 export class AllUsersComponent {
-    @ViewChild(StartModalComponent) startModal: StartModalComponent;
-
+    
     private allUsersPath = 'users';
     private responseUsers;
     private btn = "start";
@@ -33,8 +32,4 @@ export class AllUsersComponent {
                 this.responseUsers = res.obj.object;
             })
     }   
-
-    stop (id) {
-        this.currentUser = id;
-    }
 }

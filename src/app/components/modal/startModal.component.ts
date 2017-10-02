@@ -1,3 +1,4 @@
+import { UsersService } from '../../services/users.service';
 import { ToastService } from '../../typescripts/pro/alerts/index';
 import { NetworkService } from '../../services/network.service';
 import { ModalDirective } from '../../typescripts/free/modals/index';
@@ -16,7 +17,8 @@ export class StartModalComponent {
 
     constructor(
         private networkService: NetworkService,
-        private toastService: ToastService
+        private toastService: ToastService,
+        private usersService: UsersService
     ) { }
 
     open(id) {
@@ -46,17 +48,8 @@ export class StartModalComponent {
                 id: this.id
             }
         };
-        if (data.userCount > 0) {
-            let url = 'timer/' + this.id;
-            
-            this.networkService
-                .post(url, data)
-                .subscribe(res => {
-                    this.startForm.hide()
-                    console.log(res)
-                })
-        } else {
-            this.toastService.info('Броя играчи трябва да е поне 1!')
-        }
+        
+        this.usersService  
+            .start(data, this.startForm)
     }
 }
