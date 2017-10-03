@@ -1,0 +1,8 @@
+<div class="camera" style="position:relative">
+    <video class="w-100" #video id="video"></video>
+    <button (click)="takePhoto()" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Take photo</button>
+</div>
+<canvas style="display:none" #canvas id="canvas"></canvas>
+<div id="output">
+    <img #image alt="captured image">
+</div>

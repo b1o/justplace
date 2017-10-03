@@ -1,5 +1,5 @@
 import { USER_LOGGED_IN, USER_LOGOUT, USER_REGISTERED } from '../actions/login.actions';
-import { initialState } from '../state/login.state';
+import { loginInitialState } from '../state/login.state';
 
 function userRegistration(state, action) {
     const result = action.result;
@@ -28,7 +28,7 @@ function userLogout(state, action) {
     })
 }
 
-export function loginReducer(state = initialState, action) {
+export function loginReducer(state = loginInitialState, action) {
     switch (action.type) {
         case USER_REGISTERED:
             return userRegistration(state, action);

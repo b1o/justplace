@@ -6,9 +6,9 @@ export interface IUsersState {
     totalPage: number,
     status: boolean,
     currentTime: number
-} 
+}
 
-export const initialState: IUsersState = {
+export const allUsersInitialState: IUsersState = {
     currentPage: 0,
     firstPage: false,
     lastPage: false,

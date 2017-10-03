@@ -3,6 +3,6 @@ export interface ILayoutState {
 
 }
 
-export const initialState: ILayoutState = {
+export const layoutInitialState: ILayoutState = {
     sidenavOpen: false
 }

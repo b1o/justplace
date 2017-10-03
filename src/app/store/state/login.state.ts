@@ -5,7 +5,7 @@ export interface ILoginState {
 
 }
 
-export const initialState: ILoginState = {
+export const loginInitialState: ILoginState = {
     obj: false,
     status: false,
     userAuthenticated: false

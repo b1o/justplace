@@ -1,8 +1,8 @@
 import { CLOSE_SIDENAV, OPEN_SIDENAV } from '../actions/layout.actions';
-import { initialState } from '../state/layout.state';
+import { layoutInitialState } from '../state/layout.state';
 
 
-export function layoutReducer(state = initialState, action) {
+export function layoutReducer(state = layoutInitialState, action) {
     switch (action.type) {
         case OPEN_SIDENAV:
             return { ...state, sidenavOpen: true };

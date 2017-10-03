@@ -1,5 +1,7 @@
-import { NetworkService } from './network.service';
 import { Injectable } from '@angular/core';
+import { UserModel } from 'models/users/user.model';
+
+import { NetworkService } from './network.service';
 
 
 @Injectable()
@@ -7,14 +9,14 @@ export class UsersService {
 
     constructor(private networkService: NetworkService) { }
 
-    getAllUsers () {
+    getAllUsers() {
         let url = 'users'
 
         return this.networkService
             .get(url)
     }
 
-    start (userInfo) {
+    start(userInfo) {
         let id = userInfo.user.id;
         let url = 'timer/' + id;
 
@@ -22,10 +24,17 @@ export class UsersService {
             .post(url, userInfo)
     }
 
-    stop (id) {
+    stop(id) {
         let url = `timer/${id}/stop`;
 
         return this.networkService
             .post(url, {})
+    }
+
+    registerUser(user: UserModel) {
+        const url = 'users/new';
+
+        return this.networkService
+            .post(url, user)
     }
 }

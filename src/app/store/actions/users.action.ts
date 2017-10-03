@@ -1,22 +1,25 @@
-import { UsersService } from '../../services/users.service';
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../app.state';
+
+import { UserModel } from '../../../models/users/user.model';
+import { UsersService } from '../../services/users.service';
+import { IAction, IAppState } from '../app.state';
 
 export const ALL_USERS_FETCHED = 'users/GET_ALL';
 export const USER_STARTED = 'timer/START';
 export const USER_STOP = 'timer/STOP';
+export const REGISTER_USER = 'users/register';
 
-@Injectable() 
+@Injectable()
 export class UsersAction {
-    constructor (
+    constructor(
         private usersService: UsersService,
         private ngRedux: NgRedux<IAppState>
-    ) {}
+    ) { }
 
-    getAllUsers () {
+    getAllUsers() {
         this.usersService
-            .getAllUsers ()
+            .getAllUsers()
             .subscribe(result => {
                 this.ngRedux.dispatch({
                     type: ALL_USERS_FETCHED,
@@ -25,7 +28,7 @@ export class UsersAction {
             })
     }
 
-    start (userInfo) {
+    start(userInfo) {
         this.usersService
             .start(userInfo)
             .subscribe(result => {
@@ -33,11 +36,20 @@ export class UsersAction {
                     type: USER_STARTED,
                     result,
                     userInfo
-                })
-            })
-    } 
+                });
+            });
+    };
 
-    stop (id) {
+    registerUser(user: UserModel) {
+        this.usersService
+            .registerUser(user)
+            .subscribe(res => {
+                this.ngRedux
+                    .dispatch<IAction>({ type: REGISTER_USER, payload: res });
+            })
+    }
+
+    stop(id) {
         this.usersService
             .stop(id)
             .subscribe(result => {

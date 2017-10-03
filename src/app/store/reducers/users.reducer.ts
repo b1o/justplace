@@ -1,6 +1,7 @@
 import { UPDATE_TIME } from '../../app.component';
 import { ALL_USERS_FETCHED, USER_STARTED, USER_STOP } from '../actions/users.action';
-import { initialState } from '../state/users.state';
+import { ALL_USERS_FETCHED, REGISTER_USER, USER_STARTED } from '../actions/users.action';
+import { allUsersInitialState } from '../state/users.state';
 
 function getAllUsers(state, action) {
     let result = action.result
@@ -37,7 +38,7 @@ function startUser(state, action) {
     return state;
 }
 
-function stopUser (state, action) {
+function stopUser(state, action) {
     const result = action.result;
     const id = action.id;
     let users = [];
@@ -54,7 +55,7 @@ function stopUser (state, action) {
     return state;
 }
 
-function updateCurrentTime (state, action) {
+function updateCurrentTime(state, action) {
     let time = state.currentTime;
     time += 1000;
 
@@ -63,7 +64,15 @@ function updateCurrentTime (state, action) {
     })
 }
 
-export function usersReducer(state = initialState, action) {
+function registerUser(state, payload) {
+    if (payload) {
+        return [...state, payload]
+    }
+
+    return state;
+}
+
+export function usersReducer(state = allUsersInitialState, action) {
     switch (action.type) {
         case ALL_USERS_FETCHED:
             return getAllUsers(state, action);
@@ -73,6 +82,8 @@ export function usersReducer(state = initialState, action) {
             return stopUser(state, action);
         case UPDATE_TIME:
             return updateCurrentTime(state, action);
+        case REGISTER_USER:
+            return registerUser(state, action.payload);
         default:
             return state;
     }
