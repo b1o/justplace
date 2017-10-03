@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgRedux } from 'ng2-redux';
 
+import { LayoutActions } from '../../../store/actions/layout.actions';
 import { LoginActions } from '../../../store/actions/login.actions';
 import { IAppState } from '../../../store/index';
 
@@ -12,11 +13,20 @@ import { IAppState } from '../../../store/index';
 
 export class NavbarComponent implements OnInit {
     public isLoggedIn = false;
+    private sidenavOpened = false;
 
-    constructor(private ngRedux: NgRedux<IAppState>, private loginActions: LoginActions, private router: Router) { }
+    constructor(
+        private ngRedux: NgRedux<IAppState>,
+        private loginActions: LoginActions,
+        private router: Router,
+        private layoutActions: LayoutActions) { }
 
     logout() {
-        this.loginActions.logout()
+        this.loginActions.logout();
+    }
+
+    toggleSidenav() {
+        this.sidenavOpened ? this.layoutActions.closeSidenav() : this.layoutActions.openSidenav();
     }
 
     ngOnInit() {

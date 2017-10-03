@@ -1,11 +1,12 @@
-import { Observable, Subscription } from 'rxjs/Rx';
-import { StartModalComponent } from '../modal/startModal.component';
+import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+
 import { NetworkService } from '../../services/network.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { StartModalComponent } from '../modal/startModal.component';
 
 @Component({
     selector: 'list-item',
-    templateUrl: 'listItem.component.html'
+    templateUrl: 'listItem.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ListItemComponent implements OnInit {
@@ -14,9 +15,9 @@ export class ListItemComponent implements OnInit {
 
     constructor(
         private networkService: NetworkService
-    ) {}
+    ) { }
 
-    
+
 
     ngOnInit() {
     }

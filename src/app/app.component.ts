@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { ToastService } from './typescripts/pro';
-import { IMyOptions } from './typescripts/pro/date-picker/index';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+
+import { IAppState } from './store/index';
+import { SidenavComponent } from './typescripts/pro';
 
 @Component({
   selector: 'mdb-root',
@@ -9,5 +11,24 @@ import { IMyOptions } from './typescripts/pro/date-picker/index';
 
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: SidenavComponent;
+
+  constructor(private ngRedux: NgRedux<IAppState>) {
+
+
+  }
+
+  ngOnInit() {
+    this.ngRedux
+      .select(state => state.layout)
+      .subscribe(state => {
+        if (state.sidenavOpen) {
+          this.sidenav.show();
+        } else {
+          this.sidenav.hide();
+        }
+      });
+  }
+
 }

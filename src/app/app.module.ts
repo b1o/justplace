@@ -20,6 +20,7 @@ import { AuthService } from './services/auth.service';
 import { NetworkService } from './services/network.service';
 import { UsersService } from './services/users.service';
 import { IAppState, store } from './store';
+import { LayoutActions } from './store/actions/layout.actions';
 import { LoginActions } from './store/actions/login.actions';
 import { UsersAction } from './store/actions/users.action';
 import { MDBBootstrapModule } from './typescripts/free';
@@ -56,7 +57,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     NetworkService,
     LoginActions,
     UsersAction,
-    UsersService
+    UsersService,
+    LayoutActions
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

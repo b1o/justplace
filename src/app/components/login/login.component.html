@@ -21,43 +21,38 @@
     <button type="submit">Submit</button>
 </form> -->
 
-<div class="col-md-12">
+<div class="col-6 mx-auto">
     <!--Form-->
-    <div class="card">
-        <div class="card-body z-depth-2">
+    <div class="card card-cascade narrower">
+
+        <div class="card-body">
             <!--Header-->
-            <div class="text-center">
-                <h3>Write to us:</h3>
-                <hr>
+            <div class="form-header blue-gradient accent-1">
+                <h2 class="h2-responsive mb-2">Login</h2>
+
             </div>
 
             <!--Body-->
-            <div class="md-form">
-                <i class="fa fa-user prefix grey-text"></i>
-                <input type="text" id="form3" class="form-control" mdbActive>
-                <label for="form3">Your name</label>
-            </div>
-            <div class="md-form">
-                <i class="fa fa-envelope prefix grey-text"></i>
-                <input type="text" id="form2" class="form-control" mdbActive>
-                <label for="form2">Your email</label>
-            </div>
+            <form #form="ngForm" (submit)="login()">
+                <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input name="username" type="text" [(ngModel)]="user.username" id="form3" class="form-control" mdbActive>
+                    <label for="form3">Your name</label>
+                </div>
 
-            <!--Textarea with icon prefix-->
-            <div class="md-form">
-                <i class="fa fa-pencil prefix grey-text"></i>
-                <textarea type="text" id="form8" class="md-textarea"></textarea>
-                <label for="form8">Your message</label>
-            </div>
-
-            <div class="text-center">
-                <button class="btn peach-gradient waves-light" mdbRippleRadius>Send</button>
+                <!--Textarea with icon prefix-->
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input name="password" [(ngModel)]="user.password" type="password" id="form8" class="form-control" mdbActive>
+                    <label for="form8">Your password</label>
+                </div>
                 <hr>
-                <fieldset class="form-group">
-                    <input type="checkbox" id="checkbox1">
-                    <label for="checkbox1">Subscribe me to the newsletter</label>
-                </fieldset>
-            </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-info" mdbRippleRadius>Login</button>
+
+                </div>
+            </form>
 
         </div>
     </div>

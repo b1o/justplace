@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IAppState } from 'app/store';
 import { NgRedux } from 'ng2-redux';
@@ -13,7 +13,6 @@ import { LoginModel } from './login.model';
 })
 
 export class LoginComponent implements OnInit {
-    @HostBinding("class.row") row = true;
 
     private user: LoginModel = new LoginModel()
 

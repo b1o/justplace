@@ -1,10 +1,12 @@
-import { usersReducer } from './reducers/users.reducer';
-import { combineReducers } from 'redux'
-import { IAppState } from './app.state'
+import { combineReducers } from 'redux';
 
-import { loginReducer } from './reducers/login.reducer'
+import { IAppState } from './app.state';
+import { layoutReducer } from './reducers/layout.reducer';
+import { loginReducer } from './reducers/login.reducer';
+import { usersReducer } from './reducers/users.reducer';
 
 export const reducer = combineReducers<IAppState>({
     loginUser: loginReducer,
-    allUsers: usersReducer
+    allUsers: usersReducer,
+    layout: layoutReducer
 })

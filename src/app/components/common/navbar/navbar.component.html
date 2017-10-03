@@ -1,29 +1,35 @@
-<!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-    <logo>
-        <a class="logo navbar-brand waves-light" mdbRippleRadius href="#"><strong>JUMP GAME</strong></a>
-    </logo>
-    <links>
-        <ul *ngIf="!isLoggedIn" class="navbar-nav mr-auto">
-            <li class="nav-item active waves-light" mdbRippleRadius>
-                <a class="nav-link" routerLink="login">Login</a>
-            </li>
-        </ul>
-        <ul *ngIf="isLoggedIn" class="navbar-nav mr-auto">
-            <li class="nav-item active waves-light" mdbRippleRadius>
-                <a class="nav-link"routerLink="users">All Users</a>
-            </li>
-            <li class="nav-item waves-light" mdbRippleRadius>
-                <a class="nav-link" routerLink="users/active">Active Users</a>
-            </li>
-        </ul>
-        <form *ngIf="isLoggedIn" class="form-inline waves-light" mdbRippleRadius>
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        </form>
-        <ul *ngIf="isLoggedIn" class="navbar-nav">
-            <li class="nav-item active waves-light" mdbRippleRadius>
-                <a class="nav-link" (click)="logout()">Exit</a>
-            </li>
-        </ul>
-    </links>
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-md scrolling-navbar double-nav" [containerInside]="false">
+    <!-- SideNav slide-out button -->
+    <div class="float-xs-left">
+        <a (click)="toggleSidenav()" class="button-collapse"><i class="fa fa-bars"></i></a>
+    </div>
+    <!--/. SideNav slide-out button -->
+
+    <!-- Breadcrumb-->
+    <div class="breadcrumb-dn mr-auto">
+        <p>Just Place</p>
+    </div>
+    <!--/. Breadcrumb-->
+
+    <ul *ngIf="isLoggedIn" class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item active" routerLinkActive="active">
+            <a class="nav-link waves-light " mdbRippleRadius><i class="fa fa-users text-success"></i> <span class="clearfix d-none d-sm-inline-block">Active Users</span></a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link waves-light" mdbRippleRadius><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">All Users</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">Еxit</span></a>
+        </li>
+
+    </ul>
+
+    <ul *ngIf="!isLoggedIn" class="nav navbar-nav nav-flex-icons ml-auto">
+
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link waves-light" routerLink="/login" mdbRippleRadius><i class="fa fa-sign-in"></i> <span class="clearfix d-none d-sm-inline-block">Login</span></a>
+        </li>
+
+    </ul>
+
 </mdb-navbar>

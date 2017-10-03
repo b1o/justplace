@@ -1,4 +1,4 @@
-<th class="p-2 align-middle" scope="row">
+<!-- <th class="p-2 align-middle" scope="row">
     1</th>
 <td class="p-2 align-middle">{{user.name}}</td>
 <td class="p-2 align-middle">{{user.email}}</td>
@@ -10,6 +10,23 @@
     <button *ngIf="user.currentSession" class="btn btn-sm peach-gradient btn-rounded waves-light" mdbRippleRadius (click)="stop(user.id)">
         Стоп
     </button>
-</td>
+</td> -->
+
+<div class="media mb-1 border p-2">
+    <a class="media-left waves-light">
+        <img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-13.jpg" alt="Generic placeholder image">
+    </a>
+    <div class="media-body" style="position:relative; align-self:stretch">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="m-0"> {{user.name}} <small class="text-muted">{{user.email}}</small></h4>
+            <button class="btn btn-sm peach-gradient d-inline-block">Start</button>
+        </div>
+
+        <hr class="my-1">
+        <div class="time d-flex justify-content-center align-items-center">
+            <h4 class="m-0">02:30h</h4>
+        </div>
+    </div>
+</div>
 
 <start-modal #startModal></start-modal>
