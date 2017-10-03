@@ -1,9 +1,5 @@
-import { initialState } from '../state/users.state'
-
-import {
-    ALL_USERS_FETCHED,
-    USER_STARTED
-} from '../actions/users.action'
+import { ALL_USERS_FETCHED, USER_STARTED } from '../actions/users.action';
+import { initialState } from '../state/users.state';
 
 function getAllUsers(state, action) {
     let result = action.result
@@ -19,25 +15,26 @@ function getAllUsers(state, action) {
         })
     }
 
-    return state
+    return state;
 }
 
 function startUser(state, action) {
-    let result = action.result;
-    let userId = action.userInfo.user.id;
+    const result = action.result;
+    const userId = action.userInfo.user.id;
+    let users = [];
 
-    console.log('from reducer', action)
-    
+
     if (result.obj) {
-        let users = state.allUsers
-        for (let user of users) {
-            if(user.id === userId) {
-                user.currentSession = result
-            }
-        }
+        users = state.allUsers.map(u => {
+            return u.id === userId ? { ...u, currentSession: result } : u;
+        });
+
+        const newState = { ...state, allUsers: users };
+        return newState;
     }
 
-    return state
+
+    return state;
 }
 
 export function usersReducer(state = initialState, action) {

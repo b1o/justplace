@@ -1,32 +1,30 @@
-import { UsersService } from './services/users.service';
-import { UsersAction } from './store/actions/users.action';
-import { LoginActions } from './store/actions/login.actions';
-import { RoutesModule } from './routes.module';
-import { NetworkService } from './services/network.service';
-import { LoginComponent } from './components/login/login.component';
-import { AllUsersComponent } from './components/usersList/allUsers.component';
-import { StartModalComponent } from './components/modal/startModal.component';
-import { ListItemComponent } from './components/listItems/listItem.component';
-import { AuthService } from './services/auth.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgRedux, NgReduxModule } from 'ng2-redux';
+
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { ListItemComponent } from './components/listItems/listItem.component';
+import { LoginComponent } from './components/login/login.component';
+import { StartModalComponent } from './components/modal/startModal.component';
+import { AllUsersComponent } from './components/usersList/allUsers.component';
+import { config } from './config';
+import { RoutesModule } from './routes.module';
+import { AuthService } from './services/auth.service';
+import { NetworkService } from './services/network.service';
+import { UsersService } from './services/users.service';
+import { IAppState, store } from './store';
+import { LoginActions } from './store/actions/login.actions';
+import { UsersAction } from './store/actions/users.action';
 import { MDBBootstrapModule } from './typescripts/free';
 import { MDBBootstrapModulePro } from './typescripts/pro';
-import { AgmCoreModule } from '@agm/core';
-import { AppComponent } from './app.component';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MDBSpinningPreloader } from './typescripts/pro/';
-
-import { Router } from '@angular/router'
-
-import { NgReduxModule, NgRedux } from 'ng2-redux';
-import { store, IAppState } from './store'
-
-import { config } from './config'
 
 @NgModule({
   declarations: [
@@ -34,7 +32,8 @@ import { config } from './config'
     LoginComponent,
     AllUsersComponent,
     StartModalComponent,
-    ListItemComponent
+    ListItemComponent,
+    NavbarComponent
   ],
   imports: [
     NgReduxModule,

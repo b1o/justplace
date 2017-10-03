@@ -1,5 +1,6 @@
-import { NetworkService } from './network.service';
 import { Injectable } from '@angular/core';
+
+import { NetworkService } from './network.service';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AuthService {
         return window.localStorage.setItem('user', user)
     }
 
-    isUserAuthenticated () {
+    isUserAuthenticated() {
         return window.localStorage.getItem('user') !== null
     }
 
@@ -27,6 +28,8 @@ export class AuthService {
     }
 
     logout() {
+        return this.networkService
+            .get(this.userLogout)
     }
 
 

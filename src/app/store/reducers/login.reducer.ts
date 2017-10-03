@@ -1,12 +1,7 @@
-import { initialState } from '../state/login.state'
+import { USER_LOGGED_IN, USER_LOGOUT, USER_REGISTERED } from '../actions/login.actions';
+import { initialState } from '../state/login.state';
 
-import  { 
-    USER_REGISTERED, 
-    USER_LOGGED_IN,
-    USER_LOGOUT
-} from '../actions/login.actions'
-
-function userRegistration (state, action) {
+function userRegistration(state, action) {
     const result = action.result;
 
     return Object.assign({}, state, {
@@ -14,21 +9,22 @@ function userRegistration (state, action) {
     })
 }
 
-function userLogin (state, action) {
+function userLogin(state, action) {
     const result = action.result;
-    
+
     return Object.assign({}, state, {
         obj: result.obj,
-        status: result.status
+        status: result.status,
+        userAuthenticated: result.status
     })
 
 }
 
-function userLogout (state, action) {
+function userLogout(state, action) {
+    window.localStorage.removeItem('user');
     return Object.assign({}, state, {
         userAuthenticated: false,
-        token: null,
-        username: null
+        obj: false,
     })
 }
 
@@ -42,5 +38,5 @@ export function loginReducer(state = initialState, action) {
             return userLogout(state, action);
         default:
             return state;
-        }
+    }
 }

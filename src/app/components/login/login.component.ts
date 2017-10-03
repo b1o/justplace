@@ -1,10 +1,11 @@
-import { LoginActions } from '../../store/actions/login.actions';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginModel } from './login.model';
-import { AuthService } from '../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
 import { IAppState } from 'app/store';
+import { NgRedux } from 'ng2-redux';
+
+import { AuthService } from '../../services/auth.service';
+import { LoginActions } from '../../store/actions/login.actions';
+import { LoginModel } from './login.model';
 
 @Component({
     selector: 'login',
@@ -12,6 +13,8 @@ import { IAppState } from 'app/store';
 })
 
 export class LoginComponent implements OnInit {
+    @HostBinding("class.row") row = true;
+
     private user: LoginModel = new LoginModel()
 
     constructor(
@@ -36,7 +39,7 @@ export class LoginComponent implements OnInit {
                 if (user.obj && user.status) {
                     this.authService.saveUser(user.obj)
                     this.router.navigateByUrl('users')
-                } 
+                }
             })
     }
 }

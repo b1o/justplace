@@ -1,27 +1,39 @@
+import { Injectable } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+
 import { AuthService } from '../../services/auth.service';
-import { Injectable } from '@angular/core'
-import { NgRedux } from 'ng2-redux'
-import { IAppState } from '../app.state'
+import { IAppState } from '../app.state';
 
 export const USER_REGISTERED = 'users/REGISTER'
 export const USER_LOGGED_IN = 'users/LOGIN'
 export const USER_LOGOUT = 'users/LOGOUT'
 
-@Injectable() 
+@Injectable()
 export class LoginActions {
-    constructor (
+    constructor(
         private authService: AuthService,
         private ngRedux: NgRedux<IAppState>
-    ) {}
+    ) { }
 
-    login (user) {
+    login(user) {
         this.authService
-            .login (user)
+            .login(user)
             .subscribe(result => {
                 this.ngRedux.dispatch({
                     type: USER_LOGGED_IN,
                     result
                 })
             })
+    }
+
+    logout() {
+        this.authService
+            .logout()
+            .subscribe(result => {
+                this.ngRedux.dispatch({
+                    type: USER_LOGOUT,
+                    result
+                });
+            });
     }
 }
