@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Current time</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="responseUsers">
+        <tr *ngFor="let user of responseUsers">
+            <list-item [user]='user'></list-item>
+        </tr>
+    </tbody>
+</table>
+
