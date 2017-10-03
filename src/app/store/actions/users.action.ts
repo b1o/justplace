@@ -5,6 +5,7 @@ import { IAppState } from '../app.state';
 
 export const ALL_USERS_FETCHED = 'users/GET_ALL';
 export const USER_STARTED = 'timer/START';
+export const USER_STOP = 'timer/STOP';
 
 @Injectable() 
 export class UsersAction {
@@ -35,4 +36,16 @@ export class UsersAction {
                 })
             })
     } 
+
+    stop (id) {
+        this.usersService
+            .stop(id)
+            .subscribe(result => {
+                this.ngRedux.dispatch({
+                    type: USER_STOP,
+                    result,
+                    id
+                })
+            })
+    }
 }

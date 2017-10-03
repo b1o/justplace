@@ -21,4 +21,11 @@ export class UsersService {
         return this.networkService
             .post(url, userInfo)
     }
+
+    stop (id) {
+        let url = `timer/${id}/stop`;
+
+        return this.networkService
+            .post(url, {})
+    }
 }

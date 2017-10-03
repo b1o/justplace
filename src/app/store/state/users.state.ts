@@ -4,7 +4,8 @@ export interface IUsersState {
     lastPage: boolean,
     allUsers: Array<object>,
     totalPage: number,
-    status: boolean
+    status: boolean,
+    currentTime: number
 } 
 
 export const initialState: IUsersState = {
@@ -13,5 +14,6 @@ export const initialState: IUsersState = {
     lastPage: false,
     allUsers: [],
     totalPage: 0,
-    status: false
+    status: false,
+    currentTime: 0
 }

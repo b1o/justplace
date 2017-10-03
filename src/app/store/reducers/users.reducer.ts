@@ -1,4 +1,5 @@
-import { ALL_USERS_FETCHED, USER_STARTED } from '../actions/users.action';
+import { UPDATE_TIME } from '../../app.component';
+import { ALL_USERS_FETCHED, USER_STARTED, USER_STOP } from '../actions/users.action';
 import { initialState } from '../state/users.state';
 
 function getAllUsers(state, action) {
@@ -11,7 +12,8 @@ function getAllUsers(state, action) {
             lastPage: result.obj.lastPage,
             allUsers: result.obj.object,
             totalPage: result.obj.totalPage,
-            status: result.status
+            status: result.status,
+            currentTime: result.obj.currentTime
         })
     }
 
@@ -23,7 +25,6 @@ function startUser(state, action) {
     const userId = action.userInfo.user.id;
     let users = [];
 
-
     if (result.obj) {
         users = state.allUsers.map(u => {
             return u.id === userId ? { ...u, currentSession: result } : u;
@@ -33,8 +34,33 @@ function startUser(state, action) {
         return newState;
     }
 
+    return state;
+}
+
+function stopUser (state, action) {
+    const result = action.result;
+    const id = action.id;
+    let users = [];
+
+    if (result.obj) {
+        users = state.allUsers.map(u => {
+            return u.id === id ? { ...u, currentSession: null } : u;
+        });
+
+        const newState = { ...state, allUsers: users };
+        return newState;
+    }
 
     return state;
+}
+
+function updateCurrentTime (state, action) {
+    let time = state.currentTime;
+    time += 1000;
+
+    return Object.assign({}, state, {
+        currentTime: time
+    })
 }
 
 export function usersReducer(state = initialState, action) {
@@ -43,6 +69,10 @@ export function usersReducer(state = initialState, action) {
             return getAllUsers(state, action);
         case USER_STARTED:
             return startUser(state, action);
+        case USER_STOP:
+            return stopUser(state, action);
+        case UPDATE_TIME:
+            return updateCurrentTime(state, action);
         default:
             return state;
     }

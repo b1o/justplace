@@ -10,6 +10,7 @@ import { NgRedux } from 'ng2-redux';
 })
 export class AllUsersComponent {
     private responseUsers;
+    private currentTime;
     
     constructor (
         private usrsAction: UsersAction,
@@ -25,7 +26,6 @@ export class AllUsersComponent {
         this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {
-                console.log(data)
                 this.responseUsers = data.allUsers
             })
             

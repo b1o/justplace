@@ -1,3 +1,4 @@
+import { TimerComponent } from './components/common/timer/timer.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +35,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     AllUsersComponent,
     StartModalComponent,
     ListItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    TimerComponent
   ],
   imports: [
     NgReduxModule,
