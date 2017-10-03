@@ -1,6 +1,5 @@
 import { UPDATE_TIME } from '../../app.component';
-import { ALL_USERS_FETCHED, USER_STARTED, USER_STOP } from '../actions/users.action';
-import { ALL_USERS_FETCHED, REGISTER_USER, USER_STARTED } from '../actions/users.action';
+import { ALL_USERS_FETCHED, REGISTER_USER, USER_STARTED, USER_STOP } from '../actions/users.action';
 import { allUsersInitialState } from '../state/users.state';
 
 function getAllUsers(state, action) {

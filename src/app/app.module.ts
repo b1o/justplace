@@ -1,4 +1,3 @@
-import { TimerComponent } from './components/common/timer/timer.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,9 +10,13 @@ import { NgRedux, NgReduxModule } from 'ng2-redux';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { PhotoCaptureComponent } from './components/common/photo-capture/photo-capture.component';
+import { AppSidenavComponent } from './components/common/sidenav/sidenav.component';
+import { TimerComponent } from './components/common/timer/timer.component';
 import { ListItemComponent } from './components/listItems/listItem.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartModalComponent } from './components/modal/startModal.component';
+import { RegisterUserComponent } from './components/users/registerUser/registerUser.component';
 import { AllUsersComponent } from './components/usersList/allUsers.component';
 import { config } from './config';
 import { RoutesModule } from './routes.module';
@@ -36,7 +39,10 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     StartModalComponent,
     ListItemComponent,
     NavbarComponent,
-    TimerComponent
+    TimerComponent,
+    RegisterUserComponent,
+    PhotoCaptureComponent,
+    AppSidenavComponent
   ],
   imports: [
     NgReduxModule,
