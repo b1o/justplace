@@ -16,6 +16,13 @@ export class UsersService {
             .get(url)
     }
 
+    getUserInfo(id: number) {
+        const url = 'users/' + id;
+
+        return this.networkService
+            .get(url);
+    }
+
     start(userInfo) {
         let id = userInfo.user.id;
         let url = 'timer/' + id;

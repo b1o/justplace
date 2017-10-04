@@ -9,6 +9,7 @@ export const ALL_USERS_FETCHED = 'users/GET_ALL';
 export const USER_STARTED = 'timer/START';
 export const USER_STOP = 'timer/STOP';
 export const REGISTER_USER = 'users/register';
+export const GET_USER_INFO = 'users/GET_INFO';
 
 @Injectable()
 export class UsersAction {
@@ -16,6 +17,16 @@ export class UsersAction {
         private usersService: UsersService,
         private ngRedux: NgRedux<IAppState>
     ) { }
+
+    getUserInfo(id: number) {
+        this.usersService.getUserInfo(id)
+            .subscribe(res => {
+                this.ngRedux.dispatch<IAction>({
+                    type: GET_USER_INFO,
+                    payload: res
+                });
+            });
+    }
 
     getAllUsers() {
         this.usersService

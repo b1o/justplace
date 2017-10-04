@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 
 import { UploadFile } from '../../../typescripts/pro/file-input/index';
 
@@ -7,7 +7,7 @@ import { UploadFile } from '../../../typescripts/pro/file-input/index';
     templateUrl: 'photo-capture.component.html'
 })
 
-export class PhotoCaptureComponent implements AfterViewInit {
+export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
 
     @Output() photoTaken = new EventEmitter()
 
@@ -116,6 +116,13 @@ export class PhotoCaptureComponent implements AfterViewInit {
         }, false)
 
         this.init()
+    }
+
+    ngOnDestroy() {
+        if (this.stream) {
+            this.stream.getTracks()[0].stop();
+
+        }
     }
 
 }

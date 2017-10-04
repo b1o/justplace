@@ -1,6 +1,7 @@
+import { UserModel } from '../../../models/users/user.model';
 import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
-import { ALL_USERS_FETCHED, REGISTER_USER, USER_STARTED, USER_STOP } from '../actions/users.action';
-import { allUsersInitialState } from '../state/users.state';
+import { ALL_USERS_FETCHED, GET_USER_INFO, REGISTER_USER, USER_STARTED, USER_STOP } from '../actions/users.action';
+import { allUsersInitialState, IUsersState } from '../state/users.state';
 
 function getAllUsers(state, action) {
     let result = action.result
@@ -71,6 +72,14 @@ function registerUser(state, payload) {
     return state;
 }
 
+function getUserInfo(state: IUsersState, payload) {
+    if (payload) {
+        return { ...state, selectedUser: payload.obj as UserModel };
+    }
+
+    return state;
+}
+
 export function usersReducer(state = allUsersInitialState, action) {
     switch (action.type) {
         case ALL_USERS_FETCHED:
@@ -83,6 +92,8 @@ export function usersReducer(state = allUsersInitialState, action) {
             return updateCurrentTime(state, action);
         case REGISTER_USER:
             return registerUser(state, action.payload);
+        case GET_USER_INFO:
+            return getUserInfo(state, action.payload);
         default:
             return state;
     }

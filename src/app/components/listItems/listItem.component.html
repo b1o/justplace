@@ -12,9 +12,9 @@
     </button>
 </td> -->
 
-<div style="background-color: white" class="media mb-1 border p-2 z-depth-1">
+<div routerLink="/users/{{user.id}}" style="background-color: white" class="media mb-1 border p-2 z-depth-1">
     <a class="media-left waves-light">
-        <img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-13.jpg" alt="Generic placeholder image">
+        <img class="rounded-circle" src="http://localhost:8080/resources/{{user.pictureName}}.png" alt="Generic placeholder image">
     </a>
     <div class="media-body" style="position:relative; align-self:stretch">
         <div class="d-flex justify-content-between align-items-center">

@@ -3,4 +3,5 @@ export class UserModel {
     lastName: string;
     email: string;
     photo: string;
+    sessionHistory: Array<any>;
 }
