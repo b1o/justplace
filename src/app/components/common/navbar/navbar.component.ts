@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,6 +15,7 @@ import { IAppState } from '../../../store/index';
 export class NavbarComponent implements OnInit {
     public isLoggedIn = false;
     private sidenavOpened = false;
+    private subscription: Subscription;
 
     constructor(
         private ngRedux: NgRedux<IAppState>,
@@ -30,7 +32,7 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.ngRedux.select(state => state.loginUser)
+        this.subscription = this.ngRedux.select(state => state.loginUser)
             .subscribe(u => {
                 console.log('login component', u)
                 if (u.userAuthenticated) {
@@ -40,5 +42,9 @@ export class NavbarComponent implements OnInit {
                     this.isLoggedIn = false;
                 }
             })
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe()
     }
 }

@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { PhotoCaptureComponent } from './components/common/photo-capture/photo-capture.component';
 import { AppSidenavComponent } from './components/common/sidenav/sidenav.component';
-import { TimerComponent } from './components/common/timer/timer.component';
 import { ListItemComponent } from './components/listItems/listItem.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartModalComponent } from './components/modal/startModal.component';
@@ -40,7 +39,6 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     StartModalComponent,
     ListItemComponent,
     NavbarComponent,
-    TimerComponent,
     RegisterUserComponent,
     PhotoCaptureComponent,
     AppSidenavComponent

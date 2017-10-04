@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
@@ -15,24 +16,13 @@ export class ListItemComponent implements OnInit {
     @Input() user;
     @ViewChild(StartModalComponent) startModal: StartModalComponent;
 
+    private subscription: Subscription;
     private time;
 
     constructor(
         private usersAction: UsersAction,
         private ngRedux: NgRedux<IAppState>
     ) { }
-
-
-
-    ngOnInit() {
-        this.ngRedux
-            .select(state => state.allUsers)
-            .subscribe(data => {
-                if (this.user.currentSession) {
-                    this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-                }
-            })
-    }
 
     stop(id) {
         this.usersAction.stop(id)
@@ -44,5 +34,19 @@ export class ListItemComponent implements OnInit {
         let minutes = Math.floor((miliseconds / 60000) % 60);
         let seconds = Number(((miliseconds % 60000) / 1000).toFixed(0));
         return hours + ":" + (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    ngOnInit() {
+        this.subscription = this.ngRedux
+            .select(state => state.allUsers)
+            .subscribe(data => {
+                if (this.user.currentSession) {
+                    this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
+                }
+            })
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe()
     }
 }

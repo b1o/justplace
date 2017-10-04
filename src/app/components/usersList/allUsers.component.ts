@@ -23,16 +23,6 @@ export class AllUsersComponent {
         private ngRedux: NgRedux<IAppState>
     ) { }
 
-    ngOnInit() {
-        this.updateCurrentTime();
-        this.getAllUsers();
-        
-    }
-
-    ngOnDestroy() {
-        this.subscribtion.unsubscribe();
-    }
-
     updateCurrentTime() {
         let timer = Observable.timer(0, 1000);
         this.subscribtion = timer.subscribe(t => this.ngRedux.dispatch({ type: UPDATE_TIME }));      
@@ -57,5 +47,15 @@ export class AllUsersComponent {
                 //     //this.subscribtion.unsubscribe();
                 // }
             })
+    }
+
+    ngOnInit() {
+        this.updateCurrentTime();
+        this.getAllUsers();
+        
+    }
+
+    ngOnDestroy() {
+        this.subscribtion.unsubscribe();
     }
 }

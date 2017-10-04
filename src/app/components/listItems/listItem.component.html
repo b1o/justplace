@@ -12,7 +12,7 @@
     </button>
 </td> -->
 
-<div class="media mb-1 border p-2">
+<div style="background-color: white" class="media mb-1 border p-2 z-depth-1">
     <a class="media-left waves-light">
         <img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-13.jpg" alt="Generic placeholder image">
     </a>
@@ -29,7 +29,8 @@
 
         <hr class="my-1">
         <div class="time d-flex justify-content-center align-items-center">
-            <h3 *ngIf='user.currentSession'>{{time}}</h3>
+            <h3 *ngIf='user.currentSession' class="animated flipInX">{{time}}</h3>
+            <h3 *ngIf='!user.currentSession'>0:00:00</h3>
         </div>
     </div>
 </div>

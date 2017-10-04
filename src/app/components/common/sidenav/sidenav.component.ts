@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -11,11 +12,12 @@ import { SidenavComponent } from '../../../typescripts/pro';
 
 export class AppSidenavComponent implements OnInit {
     @ViewChild('sidenav') sidenav: SidenavComponent
+    private subscription: Subscription
 
     constructor(private ngRedux: NgRedux<IAppState>) { }
 
     ngOnInit() {
-        this.ngRedux.select(state => state.layout)
+        this.subscription = this.ngRedux.select(state => state.layout)
             .subscribe(state => {
                 if (state.sidenavOpen) {
                     this.sidenav.show()
@@ -23,5 +25,9 @@ export class AppSidenavComponent implements OnInit {
                     this.sidenav.hide()
                 }
             })
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe()
     }
 }

@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,6 +16,7 @@ import { LoginModel } from './login.model';
 export class LoginComponent implements OnInit {
 
     private user: LoginModel = new LoginModel()
+    private subscription: Subscription;
 
     constructor(
         private authService: AuthService,
@@ -23,16 +25,9 @@ export class LoginComponent implements OnInit {
         private loginActions: LoginActions
     ) { }
 
-    ngOnInit() {
-        if (this.authService.isUserAuthenticated()) {
-            this.router.navigateByUrl('users')
-        }
-    }
-
-
     login() {
         this.loginActions.login(this.user)
-        this.ngRedux
+        this.subscription = this.ngRedux
             .select(state => state.loginUser)
             .subscribe(user => {
                 if (user.obj && user.status) {
@@ -40,5 +35,15 @@ export class LoginComponent implements OnInit {
                     this.router.navigateByUrl('users')
                 }
             })
+    }
+
+    ngOnInit() {
+        if (this.authService.isUserAuthenticated()) {
+            this.router.navigateByUrl('users')
+        }
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe()
     }
 }

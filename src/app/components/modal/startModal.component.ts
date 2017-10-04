@@ -51,8 +51,6 @@ export class StartModalComponent {
             }
         };
 
-        this.usersActions.start(data)
-        this.ngRedux
-            .select(state => state)
+        this.usersActions.start(data);
     }
 }
