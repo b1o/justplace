@@ -1,4 +1,6 @@
 import { AgmCoreModule } from '@agm/core';
+import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -6,7 +8,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgRedux, NgReduxModule } from 'ng2-redux';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
@@ -52,6 +53,7 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     HttpModule,
     MDBBootstrapModule.forRoot(),
     MDBBootstrapModulePro.forRoot(),
+    NgReduxRouterModule,
     NgbModule.forRoot(),
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
@@ -75,10 +77,11 @@ export class AppModule {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private ngReduxRouter: NgReduxRouter) {
 
     this.ngRedux.provideStore(store);
-
+    this.ngReduxRouter.initialize()
     config(ngRedux, router, authService);
   }
 }

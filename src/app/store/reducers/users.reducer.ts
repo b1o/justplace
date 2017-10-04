@@ -65,7 +65,7 @@ function updateCurrentTime(state, action) {
 
 function registerUser(state, payload) {
     if (payload) {
-        return [...state, payload]
+        return { ...state, allUsers: [...state.allUsers, payload] }
     }
 
     return state;

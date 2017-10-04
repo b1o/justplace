@@ -1,6 +1,7 @@
-import { IAppState } from '../../../store/app.state';
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import { Component, Input, OnInit } from '@angular/core';
+
+import { IAppState } from '../../../store/app.state';
 
 @Component({
     selector: 'timer',
@@ -12,7 +13,7 @@ export class TimerComponent implements OnInit {
 
     constructor(
         private ngRedux: NgRedux<IAppState>
-    ) { 
+    ) {
         console.log('timer Component')
     }
 

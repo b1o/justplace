@@ -1,6 +1,6 @@
+import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgRedux } from 'ng2-redux';
 
 import { LayoutActions } from '../../../store/actions/layout.actions';
 import { LoginActions } from '../../../store/actions/login.actions';

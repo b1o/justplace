@@ -1,7 +1,7 @@
+import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IAppState } from 'app/store';
-import { NgRedux } from 'ng2-redux';
 
 import { AuthService } from '../../services/auth.service';
 import { LoginActions } from '../../store/actions/login.actions';

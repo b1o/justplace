@@ -1,8 +1,8 @@
-import { IAppState } from '../../store/app.state';
-import { NgRedux } from 'ng2-redux';
-import { UsersAction } from '../../store/actions/users.action';
+import { NgRedux } from '@angular-redux/store';
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
+import { UsersAction } from '../../store/actions/users.action';
+import { IAppState } from '../../store/app.state';
 import { StartModalComponent } from '../modal/startModal.component';
 
 @Component({
@@ -26,24 +26,24 @@ export class ListItemComponent implements OnInit {
 
     ngOnInit() {
         this.ngRedux
-        .select(state => state.allUsers)
-        .subscribe(data => {
-            if (this.user.currentSession) {
-                this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-                console.log(this.user.currentSession)
-            }
-        })
+            .select(state => state.allUsers)
+            .subscribe(data => {
+                if (this.user.currentSession) {
+                    this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
+                    console.log(this.user.currentSession)
+                }
+            })
     }
 
     stop(id) {
         this.usersAction.stop(id)
     }
 
-    getGameTime (startTime, currentTime) {
+    getGameTime(startTime, currentTime) {
         let miliseconds = currentTime - startTime;
         let hours = Math.floor(miliseconds / (60000 * 60));
         let minutes = Math.floor((miliseconds / 60000) % 60);
         let seconds = Number(((miliseconds % 60000) / 1000).toFixed(0));
-        return hours + ":" + (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;    
+        return hours + ":" + (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 }

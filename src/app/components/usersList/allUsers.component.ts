@@ -1,8 +1,8 @@
-import { IAppState } from '../../store/index';
+import { NgRedux } from '@angular-redux/store';
+import { Component } from '@angular/core';
+
 import { UsersAction } from '../../store/actions/users.action';
-import { StartModalComponent } from '../modal/startModal.component';
-import { Component, ViewChild } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
+import { IAppState } from '../../store/index';
 
 @Component({
     selector: 'all-users-list',
@@ -11,23 +11,23 @@ import { NgRedux } from 'ng2-redux';
 export class AllUsersComponent {
     private responseUsers;
     private currentTime;
-    
-    constructor (
+
+    constructor(
         private usrsAction: UsersAction,
         private ngRedux: NgRedux<IAppState>
-    ) {}
+    ) { }
 
-    ngOnInit () {
-        this.getAllUsers ();
+    ngOnInit() {
+        this.getAllUsers();
     }
 
-    getAllUsers () {
+    getAllUsers() {
         this.usrsAction.getAllUsers()
         this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {
                 this.responseUsers = data.allUsers
             })
-            
-    }   
+
+    }
 }

@@ -18,6 +18,8 @@
     "private": true,
     "dependencies": {
         "@agm/core": "~1.0.0-beta.0",
+        "@angular-redux/router": "^6.3.1",
+        "@angular-redux/store": "^6.5.7",
         "@angular/animations": "4.3.x ||^2.0.0",
         "@angular/common": "4.3.x ||^2.0.0",
         "@angular/compiler": "~4.3.3 ||^2.0.0",
@@ -40,7 +42,6 @@
         "gulp-run": "1.7.x",
         "hammerjs": "2.0.x",
         "ng-html-util": "1.0.x",
-        "ng2-redux": "5.1.2",
         "ngm-cli": "0.5.x",
         "redux": "3.7.2",
         "rxjs": "5.3.x",

@@ -1,9 +1,10 @@
-import { IAppState } from '../../store/app.state';
-import { NgRedux } from 'ng2-redux';
-import { UsersAction } from '../../store/actions/users.action';
-import { ToastService } from '../../typescripts/pro/alerts/index';
-import { ModalDirective } from '../../typescripts/free/modals/index';
+import { NgRedux } from '@angular-redux/store';
 import { Component, ViewChild } from '@angular/core';
+
+import { UsersAction } from '../../store/actions/users.action';
+import { IAppState } from '../../store/app.state';
+import { ModalDirective } from '../../typescripts/free/modals/index';
+import { ToastService } from '../../typescripts/pro/alerts/index';
 
 @Component({
     selector: 'start-modal',
@@ -49,7 +50,7 @@ export class StartModalComponent {
                 id: this.id
             }
         };
-        
+
         this.usersActions.start(data)
         this.ngRedux
             .select(state => state)

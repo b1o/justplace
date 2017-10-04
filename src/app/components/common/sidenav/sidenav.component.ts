@@ -1,5 +1,5 @@
+import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
 
 import { IAppState } from '../../../store/app.state';
 import { SidenavComponent } from '../../../typescripts/pro';

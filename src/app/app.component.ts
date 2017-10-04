@@ -1,5 +1,5 @@
+import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
 import { Observable } from 'rxjs/Rx';
 
 import { IAppState } from './store/index';
@@ -24,6 +24,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.updateCurrentTime();
+    //this.updateCurrentTime();
   }
 }

@@ -1,3 +1,4 @@
+import { routerReducer } from '@angular-redux/router';
 import { combineReducers } from 'redux';
 
 import { IAppState } from './app.state';
@@ -8,5 +9,6 @@ import { usersReducer } from './reducers/users.reducer';
 export const reducer = combineReducers<IAppState>({
     loginUser: loginReducer,
     allUsers: usersReducer,
-    layout: layoutReducer
+    layout: layoutReducer,
+    router: routerReducer
 })

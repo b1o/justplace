@@ -10,6 +10,7 @@ import { UsersAction } from '../../../store/actions/users.action';
 
 export class RegisterUserComponent implements OnInit {
     public user: UserModel = new UserModel();
+    public output;
 
     constructor(private usersActions: UsersAction) {
 
