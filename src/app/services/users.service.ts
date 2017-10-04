@@ -35,6 +35,6 @@ export class UsersService {
         const url = 'users/new';
 
         return this.networkService
-            .post(url, user)
+            .postWithFile(url, user)
     }
 }

@@ -1,8 +1,26 @@
-<div class="camera" style="position:relative">
-    <video class="w-100" #video id="video"></video>
-    <button (click)="takePhoto()" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Take photo</button>
-</div>
-<canvas style="display:none" #canvas id="canvas"></canvas>
-<div id="output">
-    <img #image alt="captured image">
+<h4 class="m-0 gray-text">
+    <i class="fa fa-photo prefix gray-text"></i> Photo
+    <small *ngIf="!hasCamera" class="text-danger">No camera detected <i (click)="init()" class="fa fa-refresh"></i> </small>
+</h4>
+<hr>
+<div class="photo-wrapper flex-column d-flex justify-content-center align-items-center" style="height:auto;">
+    <div [hidden]="!streaming" class="  camera" style="position:relative; height:auto">
+        <video class="w-100 z-depth-1" #video id="video" style="height:auto;"></video>
+        <button (click)="takePhoto()" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Take photo</button>
+    </div>
+    <canvas style="display:none" #canvas id="canvas"></canvas>
+    <div class="output-wrapper  z-depth-1" style="position:relative; height:auto">
+        <button (click)="init()" *ngIf="output && hasCamera" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Retake</button>
+        <img [hidden]="!output" #image class="img-fluid" alt="captured image">
+    </div>
+
+
+    <div *ngIf="!hasCamera && (!output || !uploadedImage)" class="file-field d-flex flex-column">
+        <small>upload photo instead</small>
+        <div class="btn btn-primary btn-sm waves-light" mdbRippleRadius>
+            <span>Choose file</span>
+            <input type="file" (change)="onUploadOutput($event)">
+        </div>
+    </div>
+    <mdb-spinner *ngIf="loading" spinnerType="big"></mdb-spinner>
 </div>

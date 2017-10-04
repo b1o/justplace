@@ -4,7 +4,7 @@
 
         <div class="card-body">
             <!--Header-->
-            <div class="form-header blue-gradient accent-1">
+            <div class="form-header blue-gradient accent-1" style="margin-bottom: 1rem;">
                 <h2 class="h2-responsive mb-2">Register new user</h2>
 
             </div>
@@ -38,7 +38,7 @@
                 </form>
 
                 <div class="col-6 photo">
-                    <app-photo-capture></app-photo-capture>
+                    <app-photo-capture (photoTaken)="onPhotoTaken($event)"></app-photo-capture>
                 </div>
 
             </div>

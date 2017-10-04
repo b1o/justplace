@@ -16,8 +16,12 @@ export class RegisterUserComponent implements OnInit {
 
     }
 
+    onPhotoTaken(event) {
+        this.user.photo = event.photo;
+    }
+
     register() {
-        this.user.photo = 'asd';
+        console.log(this.user);
         this.usersActions.registerUser(this.user);
     }
 
