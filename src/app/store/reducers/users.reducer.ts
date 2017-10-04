@@ -1,3 +1,4 @@
+import { DESELECT_USER } from './../actions/users.action';
 import { UserModel } from '../../../models/users/user.model';
 import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
 import { ALL_USERS_FETCHED, GET_USER_INFO, REGISTER_USER, USER_STARTED, USER_STOP } from '../actions/users.action';
@@ -94,6 +95,8 @@ export function usersReducer(state = allUsersInitialState, action) {
             return registerUser(state, action.payload);
         case GET_USER_INFO:
             return getUserInfo(state, action.payload);
+        case DESELECT_USER:
+            return { ...state, selectedUser: null }
         default:
             return state;
     }

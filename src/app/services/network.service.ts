@@ -3,7 +3,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../environments/environment';
@@ -46,7 +46,11 @@ export class NetworkService {
     }
 
     postWithFile(url, body) {
-        const options = { withCredentials: true };
+        const headers = new Headers();
+        headers.append('enctype', 'UTF-8');
+        headers.delete('Content-Type');
+
+        const options = { withCredentials: true, headers: headers };
         const data = new FormData();
         let { name, lastName, email } = body;
         data.append('dto', new Blob([JSON.stringify({ name, lastName, email })], { type: 'application/json' }));

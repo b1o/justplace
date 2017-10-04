@@ -1,5 +1,5 @@
 <div *ngIf="ready" style="display:block">
 
-    <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" [legend]="true">
+    <canvas #graph mdbChart (chartClick)="chartClicked($event)"  [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" [legend]="true">
     </canvas>
 </div>

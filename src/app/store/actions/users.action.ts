@@ -10,6 +10,7 @@ export const USER_STARTED = 'timer/START';
 export const USER_STOP = 'timer/STOP';
 export const REGISTER_USER = 'users/register';
 export const GET_USER_INFO = 'users/GET_INFO';
+export const DESELECT_USER = 'users/deselect_current';
 
 @Injectable()
 export class UsersAction {
@@ -26,6 +27,10 @@ export class UsersAction {
                     payload: res
                 });
             });
+    }
+
+    deselectUser() {
+        this.ngRedux.dispatch<IAction>({type: DESELECT_USER})
     }
 
     getAllUsers() {

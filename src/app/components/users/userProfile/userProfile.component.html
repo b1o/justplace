@@ -1,26 +1,58 @@
 <div *ngIf="user" class="row">
     <div class="col-12">
         <div class="card card-cascade narrower">
-            <div class="card-body">
-                <div class="row">
-                    <div class="form-header col-5">
+            <div class="row ">
+                <div class="card-body col-5">
+                    <div class="form-header info-color accent-1">
                         User info
 
                     </div>
-                    <div class="form-header ml-auto col-5">
+                    <div class="user-info p-1 d-flex align-items-start">
+                        <div class="avatar z-depth-1" style="width: 128px; height: auto;">
+                            <img class="img-fluid" src="http://localhost:8080/resources/{{user.pictureName}}.jpeg" alt="">
+                        </div>
+                        <div class="names ml-2" style="flex-grow:1">
+                            <h3 class="m-0 p-0 text-capitalize">{{user.name}} {{user.lastName}}</h3>
+                            <hr class="m-0 p-0">
+                            <small class="text-muted">{{user.email}}</small>
+                            <div class="timer ">
+                                <span [@time]='time' class="info-color p-2">{{time}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body ml-auto col-6">
+                    <div class="form-header info-color">
                         Visitation graph
-                        <visit-graph [sessions]="user.sessions"></visit-graph>
+                        <visit-graph [sessions]="user.sessions "></visit-graph>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-6">
-                        <h3>{{user.name}} {{user.lastName}}</h3>
-                    </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="card-body col-12">
+                    <h3 class="card-title text-center">Session History</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
