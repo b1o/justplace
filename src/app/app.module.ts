@@ -6,17 +6,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { PhotoCaptureComponent } from './components/common/photo-capture/photo-capture.component';
 import { AppSidenavComponent } from './components/common/sidenav/sidenav.component';
+import { VisitGraphComponent } from './components/common/visit-graph/visit-graph.component';
 import { ListItemComponent } from './components/listItems/listItem.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartModalComponent } from './components/modal/startModal.component';
 import { RegisterUserComponent } from './components/users/registerUser/registerUser.component';
+import { UserProfileComponent } from './components/users/userProfile/userProfile.component';
 import { AllUsersComponent } from './components/usersList/allUsers.component';
 import { config } from './config';
 import { RoutesModule } from './routes.module';
@@ -41,7 +43,9 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     NavbarComponent,
     RegisterUserComponent,
     PhotoCaptureComponent,
-    AppSidenavComponent
+    AppSidenavComponent,
+    UserProfileComponent,
+    VisitGraphComponent
   ],
   imports: [
     NgReduxModule,
@@ -76,7 +80,16 @@ export class AppModule {
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
     private authService: AuthService,
-    private ngReduxRouter: NgReduxRouter) {
+    private ngReduxRouter: NgReduxRouter, private layoutActions: LayoutActions) {
+
+    this.router.events
+      .subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          if (this.ngRedux.getState().layout.sidenavOpen) {
+            this.layoutActions.closeSidenav()
+          }
+        }
+      })
 
     this.ngRedux.provideStore(store);
     this.ngReduxRouter.initialize()
