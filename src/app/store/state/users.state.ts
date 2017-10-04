@@ -3,7 +3,7 @@ export interface IUsersState {
     firstPage: boolean,
     lastPage: boolean,
     allUsers: Array<object>,
-    totalPage: number,
+    totalPages: number,
     status: boolean,
     currentTime: number
 }
@@ -13,7 +13,7 @@ export const allUsersInitialState: IUsersState = {
     firstPage: false,
     lastPage: false,
     allUsers: [],
-    totalPage: 0,
+    totalPages: 0,
     status: false,
     currentTime: 0
 }

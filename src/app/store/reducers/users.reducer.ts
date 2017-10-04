@@ -1,4 +1,4 @@
-import { UPDATE_TIME } from '../../app.component';
+import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
 import { ALL_USERS_FETCHED, REGISTER_USER, USER_STARTED, USER_STOP } from '../actions/users.action';
 import { allUsersInitialState } from '../state/users.state';
 
@@ -11,7 +11,7 @@ function getAllUsers(state, action) {
             firstPage: result.obj.firstPage,
             lastPage: result.obj.lastPage,
             allUsers: result.obj.object,
-            totalPage: result.obj.totalPage,
+            totalPages: result.obj.totalPages,
             status: result.status,
             currentTime: result.obj.currentTime
         })
@@ -27,10 +27,10 @@ function startUser(state, action) {
 
     if (result.obj) {
         users = state.allUsers.map(u => {
-            return u.id === userId ? { ...u, currentSession: result } : u;
+            return u.id === userId ? { ...u, currentSession: result.obj } : u;
         });
 
-        const newState = { ...state, allUsers: users };
+        const newState = { ...state, allUsers: users, currentTime: result.obj.currentTime };
         return newState;
     }
 

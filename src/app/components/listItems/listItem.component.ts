@@ -30,7 +30,6 @@ export class ListItemComponent implements OnInit {
             .subscribe(data => {
                 if (this.user.currentSession) {
                     this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-                    console.log(this.user.currentSession)
                 }
             })
     }
