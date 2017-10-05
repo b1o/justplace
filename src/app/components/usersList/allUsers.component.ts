@@ -16,7 +16,6 @@ export class AllUsersComponent {
     private currentTime;
     private subscribtion: Subscription;
     private response;
-    private allPages;
 
     constructor(
         private usrsAction: UsersAction,
@@ -34,8 +33,12 @@ export class AllUsersComponent {
             .select(state => state.allUsers)
             .subscribe(data => {
                 this.responseUsers = data.allUsers;
-                this.response = data;
-                this.allPages = Array(data.totalPages).fill(0);
+                this.response = {
+                    "lastPage": data.lastPage,
+                    "firstPage": data.firstPage,
+                    "totalPages": data.totalPages,
+                    "currentPage": data.currentPage
+                };
                 
                 // let users = []
                 // users = this.responseUsers.map(u => {

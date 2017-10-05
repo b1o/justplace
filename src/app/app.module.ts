@@ -1,3 +1,4 @@
+import { PaginationComponent } from './components/common/pagination/pagination.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
@@ -46,7 +47,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     PhotoCaptureComponent,
     AppSidenavComponent,
     UserProfileComponent,
-    VisitGraphComponent
+    VisitGraphComponent,
+    PaginationComponent
   ],
   imports: [
     NgReduxModule,
