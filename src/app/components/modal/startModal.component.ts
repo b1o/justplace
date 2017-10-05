@@ -16,6 +16,7 @@ export class StartModalComponent {
     private id;
     private userCount = 1;
     private description = '';
+    private user;
 
     constructor(
         private toastService: ToastService,
@@ -23,8 +24,9 @@ export class StartModalComponent {
         private ngRedux: NgRedux<IAppState>
     ) { }
 
-    open(id) {
-        this.id = id
+    open(user) {
+        this.id = user.id
+        this.user = user
         this.startForm.show()
     }
 

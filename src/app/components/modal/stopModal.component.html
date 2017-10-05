@@ -1,0 +1,69 @@
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header blue-gradient white-text">
+                <h4 class="title"><i class="fa fa-newspaper-o"></i> Спиране на играта</h4>
+                <h4 class="title" *ngIf="user">Потребител: {{user.name}} {{user.lastName}}</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="text-center"><i class="fa fa-comment fa-2x"></i></p>
+                        </div>
+
+                        <div class="col-9">
+                            <p *ngIf="user">{{user.currentSession.description}}</p>
+                        </div>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="text-center"><i class="fa fa-child fa-2x"></i></p>
+                        </div>
+
+                        <div class="col-9">
+                            <p *ngIf="user">{{user.currentSession.userCount}}</p>
+                        </div>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="text-center"><i class="fa fa-clock-o fa-2x"></i></p>
+                        </div>
+
+                        <div class="col-9">
+                            <p>{{time}}</p>
+                        </div>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="text-center"><i class="fa fa-dollar fa-2x"></i></p>
+                        </div>
+
+                        <div class="col-9">
+                            <p>{{price}} лв</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn blue-gradient btn-sm mb-1 waves-light btn-rounded" mdbRippleRadius (click)="stop(form)"><i class="fa fa-check ml-1"></i></button>
+                    <button class="btn peach-gradient btn-sm mb-1 waves-light btn-rounded" mdbRippleRadius (click)="form.hide()"><i class="fa fa-close ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

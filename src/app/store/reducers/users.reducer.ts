@@ -14,8 +14,6 @@ import { allUsersInitialState, IUsersState } from '../state/users.state';
 function getAllUsers(state, action) {
     let result = action.result
 
-    console.log(result)
-
     if (result.obj) {
         return Object.assign({}, state, {
             currentPage: result.obj.currentPage,

@@ -1,3 +1,4 @@
+import { StopModalComponent } from '../modal/stopModal.component';
 import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
@@ -15,6 +16,7 @@ import { StartModalComponent } from '../modal/startModal.component';
 export class ListItemComponent implements OnInit {
     @Input() user;
     @ViewChild(StartModalComponent) startModal: StartModalComponent;
+    @ViewChild(StopModalComponent) stopModal: StopModalComponent;
 
     private subscription: Subscription;
     private time;
@@ -23,10 +25,6 @@ export class ListItemComponent implements OnInit {
         private usersAction: UsersAction,
         private ngRedux: NgRedux<IAppState>
     ) { }
-
-    stop(id) {
-        this.usersAction.stop(id)
-    }
 
     getGameTime(startTime, currentTime) {
         let miliseconds = currentTime - startTime;
@@ -42,7 +40,7 @@ export class ListItemComponent implements OnInit {
             .subscribe(data => {
                 if (this.user.currentSession) {
                     this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-                }
+                }                
             })
     }
 

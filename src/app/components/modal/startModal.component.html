@@ -6,7 +6,8 @@
 
             <!--Header-->
             <div class="modal-header blue-gradient darken-3 white-text">
-                <h4 class="title"><i class="fa fa-newspaper-o"></i> Описание на играта</h4>
+                <h4 class="title"><i class="fa fa-newspaper-o"></i> Стартиране на игра</h4>
+                <h4 class="title" *ngIf='user'>Потребител: {{user.name}} {{user.lastName}}</h4>
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
                         <span aria-hidden="true">×</span>
                     </button>

@@ -1,3 +1,4 @@
+import { StopModalComponent } from './components/modal/stopModal.component';
 import { PaginationComponent } from './components/common/pagination/pagination.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
@@ -41,6 +42,7 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     LoginComponent,
     AllUsersComponent,
     StartModalComponent,
+    StopModalComponent,
     ListItemComponent,
     NavbarComponent,
     RegisterUserComponent,

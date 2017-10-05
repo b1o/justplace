@@ -29,10 +29,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        setInterval(() => {
-            this.time++;
-            this.cd.detectChanges()
-        }, 1000)
+        // setInterval(() => {
+        //     this.time++;
+        //     this.cd.detectChanges()
+        // }, 1000)
 
         this.storeSub = this.ngRedux
             .select(state => state.allUsers.selectedUser)
