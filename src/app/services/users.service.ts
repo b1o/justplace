@@ -9,9 +9,7 @@ export class UsersService {
 
     constructor(private networkService: NetworkService) { }
 
-    getAllUsers() {
-        let url = 'users'
-
+    getAllUsers(url) {
         return this.networkService
             .get(url)
     }
@@ -43,5 +41,9 @@ export class UsersService {
 
         return this.networkService
             .postWithFile(url, user)
+    }
+
+    changePage(pageUrl) {
+        return this.getAllUsers(pageUrl);
     }
 }

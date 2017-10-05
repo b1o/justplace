@@ -1,11 +1,20 @@
 import { DESELECT_USER } from './../actions/users.action';
 import { UserModel } from '../../../models/users/user.model';
 import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
-import { ALL_USERS_FETCHED, GET_USER_INFO, REGISTER_USER, USER_STARTED, USER_STOP } from '../actions/users.action';
+import { 
+    ALL_USERS_FETCHED, 
+    GET_USER_INFO, 
+    REGISTER_USER, 
+    USER_STARTED, 
+    USER_STOP,
+    CHANGE_PAGE 
+} from '../actions/users.action';
 import { allUsersInitialState, IUsersState } from '../state/users.state';
 
 function getAllUsers(state, action) {
     let result = action.result
+
+    console.log(result)
 
     if (result.obj) {
         return Object.assign({}, state, {
@@ -97,6 +106,8 @@ export function usersReducer(state = allUsersInitialState, action) {
             return getUserInfo(state, action.payload);
         case DESELECT_USER:
             return { ...state, selectedUser: null }
+        case CHANGE_PAGE:
+            return getAllUsers(state, action);
         default:
             return state;
     }

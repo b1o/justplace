@@ -28,7 +28,8 @@ export class AllUsersComponent {
     }
 
     getAllUsers() {
-        this.usrsAction.getAllUsers()
+        let url = 'users';
+        this.usrsAction.getAllUsers(url);
         this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {

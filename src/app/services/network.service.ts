@@ -23,7 +23,11 @@ export class NetworkService {
             .catch(err => {
                 console.error(err)
 
-                this.toastService.error("Нещо се обърка!");
+                if (err.obj) {
+                    this.toastService.error(err.obj);
+                } else {
+                    this.toastService.error("Нещо се обърка!");
+                }
                 return Observable.throw(err)
             })
     }

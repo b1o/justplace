@@ -12,6 +12,8 @@ export const REGISTER_USER = 'users/register';
 export const GET_USER_INFO = 'users/GET_INFO';
 export const DESELECT_USER = 'users/deselect_current';
 
+export const CHANGE_PAGE = '[LAYOUT] previous page';
+
 @Injectable()
 export class UsersAction {
     constructor(
@@ -33,9 +35,9 @@ export class UsersAction {
         this.ngRedux.dispatch<IAction>({type: DESELECT_USER})
     }
 
-    getAllUsers() {
+    getAllUsers(url) {
         this.usersService
-            .getAllUsers()
+            .getAllUsers(url)
             .subscribe(result => {
                 this.ngRedux.dispatch({
                     type: ALL_USERS_FETCHED,
@@ -74,6 +76,18 @@ export class UsersAction {
                     result,
                     id
                 })
+            })
+    }
+    
+    changePage(pageUrl) {
+        this.usersService
+            .changePage(pageUrl)
+            .subscribe(result => {
+                this.ngRedux
+                    .dispatch({ 
+                        type: CHANGE_PAGE, 
+                        result 
+                    });
             })
     }
 }
