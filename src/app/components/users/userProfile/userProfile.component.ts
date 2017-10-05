@@ -1,20 +1,13 @@
 import { NgRedux } from '@angular-redux/store';
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { UsersAction } from '../../../store/actions/users.action';
 import { IAppState } from '../../../store/index';
-import { transition, trigger, style, animate } from '@angular/animations';
 
 @Component({
     selector: 'user-profile',
-    templateUrl: 'userProfile.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [
-        trigger('time', [
-            transition("* => *", [style({ transform: "translatey(-100%)" }), animate("200ms")])
-        ])
-    ]
+    templateUrl: 'userProfile.component.html'
 })
 
 export class UserProfileComponent implements OnInit, OnDestroy {
@@ -22,6 +15,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     public id: number;
     public user;
     public time = 0;
+    public currentSession;
     private storeSub;
 
     constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute, private usersActions: UsersAction, private ngRedux: NgRedux<IAppState>) {
@@ -29,19 +23,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // setInterval(() => {
-        //     this.time++;
-        //     this.cd.detectChanges()
-        // }, 1000)
-
         this.storeSub = this.ngRedux
             .select(state => state.allUsers.selectedUser)
             .filter(s => s != null)
             .subscribe(state => {
-                console.log(state)
                 this.user = { ...state };
-                this.user.currentSession = this.user.sessions.filter(s => s.endTime === null)
-                this.cd.detectChanges()
+                this.currentSession = this.user.sessions.filter(s => s.endTime === null)[0]
+                console.log(this.currentSession)
             })
         this.route.params
             .subscribe(params => {

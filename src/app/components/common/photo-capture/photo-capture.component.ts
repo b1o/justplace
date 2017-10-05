@@ -84,7 +84,7 @@ export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
     public init() {
         this.loading = true;
         this.clearPhoto()
-        navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 }, audio: false })
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
             .then(stream => {
                 this.stream = stream;
                 this.hasCamera = true;

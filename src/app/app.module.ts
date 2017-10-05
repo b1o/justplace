@@ -1,5 +1,3 @@
-import { StopModalComponent } from './components/modal/stopModal.component';
-import { PaginationComponent } from './components/common/pagination/pagination.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
@@ -14,12 +12,16 @@ import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { PaginationComponent } from './components/common/pagination/pagination.component';
+import { PaginationComponent } from './components/common/pagination/pagination.component';
 import { PhotoCaptureComponent } from './components/common/photo-capture/photo-capture.component';
 import { AppSidenavComponent } from './components/common/sidenav/sidenav.component';
+import { FancyTimerComponent } from './components/common/timer/fancy-timer.component';
 import { VisitGraphComponent } from './components/common/visit-graph/visit-graph.component';
 import { ListItemComponent } from './components/listItems/listItem.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartModalComponent } from './components/modal/startModal.component';
+import { StopModalComponent } from './components/modal/stopModal.component';
 import { RegisterUserComponent } from './components/users/registerUser/registerUser.component';
 import { UserProfileComponent } from './components/users/userProfile/userProfile.component';
 import { AllUsersComponent } from './components/usersList/allUsers.component';
@@ -50,7 +52,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     AppSidenavComponent,
     UserProfileComponent,
     VisitGraphComponent,
-    PaginationComponent
+    PaginationComponent,
+    FancyTimerComponent
   ],
   imports: [
     NgReduxModule,

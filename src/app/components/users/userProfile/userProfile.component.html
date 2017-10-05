@@ -9,19 +9,30 @@
                     </div>
                     <div class="user-info p-1 d-flex align-items-start">
                         <div class="avatar z-depth-1" style="width: 128px; height: auto;">
-                            <img class="img-fluid" src="http://{{user.pictureName}}" alt="">
+
+                            <img class="img-fluid" src="{{user.pictureName}}" alt="">
                         </div>
                         <div class="names ml-2" style="flex-grow:1">
                             <h3 class="m-0 p-0 text-capitalize">{{user.name}} {{user.lastName}}</h3>
                             <hr class="m-0 p-0">
                             <small class="text-muted">{{user.email}}</small>
-                            <div class="timer ">
-                                <span [@time]='time' class="info-color p-2">{{time}}</span>
-                            </div>
                         </div>
                     </div>
+                    <div class="timer p-2 mt-3">
+                        <div class="heading d-flex justify-content-between align-items-end mt-2">
+                            <div>
+                                Active session: <small *ngIf="currentSession">{{currentSession.startTime | date:'short'}}</small>
+                                <small class="text-muted d-block" *ngIf="currentSession">{{currentSession.startTime | amTimeAgo}}</small>
+                            </div>
+                            <button *ngIf="currentSession" class="btn-sm btn btn-warning">Stop</button>
+                            <button *ngIf="!currentSession" class="btn-sm btn btn-success">Start</button>
+                        </div>
+                        <hr class="my-1">
+                        <fancy-timer *ngIf="currentSession" [startTime]="currentSession.startTime"></fancy-timer>
+                        <small *ngIf="!currentSession" class="text-warning">No active session, you can start one by clicking start</small>
+                    </div>
                 </div>
-                <div class="card-body ml-auto col-6">
+                <div class="card-body ml-auto col-7">
                     <div class="form-header info-color">
                         Visitation graph
                         <visit-graph [sessions]="user.sessions "></visit-graph>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 declare var EasyPieChart: any;
 
@@ -35,6 +35,10 @@ export class EasyPieChartComponent implements OnInit, OnChanges {
     this.element.nativeElement.innerHTML = '';
     this.pieChart = new EasyPieChart(this.element.nativeElement, this.options);
     this.pieChart.update(this.percent);
+  }
+
+  public update(newValue) {
+    this.pieChart.update(newValue)
   }
 
   ngOnChanges(changes: SimpleChanges): void {

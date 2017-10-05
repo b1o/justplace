@@ -1,9 +1,8 @@
-import { BaseChartDirective } from './../../../typescripts/free/charts/chart.directive';
-import { MDBChartsModule } from './../../../typescripts/free/charts/chart.module';
-import { AfterViewInit, Component, Input, ViewChild, ChangeDetectorRef, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
-import * as moment from 'moment';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
+import * as moment from 'moment';
+
+import { BaseChartDirective } from './../../../typescripts/free/charts/chart.directive';
 
 export const months: Array<string> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 export const days: Array<string> = ['Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat', 'Sun'];
@@ -49,6 +48,7 @@ export class VisitGraphComponent implements OnInit {
         }
     ];
 
+
     public chartOptions: any = {
         responsive: true,
         legend: {
@@ -59,22 +59,22 @@ export class VisitGraphComponent implements OnInit {
         scales: {
             yAxes: [{
                 ticks: {
-                    fontColor: "white",
-                    callback: (v) => {
-                        return v + 'm'
-                    }
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    fontColor: "white",
+                    callback: (v) => { return this.epoch_to_hh_mm_ss(v) },
+                    stepSize: 300
                 }
             }]
-        }
+        },
+
     };
 
     constructor(private cd: ChangeDetectorRef) { }
 
+    public epoch_to_hh_mm_ss(time) {
+        console.log(time)
+        var minutes = Math.floor(time / 60);
+        var seconds = time - minutes * 60;
+        return `${minutes}:${seconds}`
+    }
 
     public chartClicked(e: any): void {
         console.log(e)
@@ -90,28 +90,27 @@ export class VisitGraphComponent implements OnInit {
         return _(sessions)
             .filter((s: any) => s.endTime != null)
             .groupBy((s: any) => {
-                return moment(s.startTime).startOf('day').format()
+                return moment(s.startTime).startOf('day')
             }).map((o, key) => {
                 let total = 0;
                 for (let s of o) {
-                    total += (s.endTime - s.startTime) / (1000 * 60);
+                    total += (s.endTime - s.startTime);
                 }
 
                 return {
                     day: key,
-                    total: total.toFixed(2)
+                    total: total / (1000 * 60)
                 }
-            }).sortBy(s => s.day).toArray().value()
+            }).sortBy(s => new Date(s.day)).toArray().value()
     }
 
     ngOnInit() {
-        console.log(this.sessions)
-
+        console.log('parsed', this.parseSessions(this.sessions))
         // this.graph = this.graphRef.nativeElement;
         this.chartDatasets[0].data = this.parseSessions(this.sessions).map(s => s.total);
 
 
-        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('dddd'));
+        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('dddd'))
         console.log(this.chartLabels)
 
         console.log(this.chartDatasets)
