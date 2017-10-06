@@ -24,6 +24,7 @@
             "./styles.scss"
         ],
         "scripts": [
+            "../node_modules/moment-duration-format/lib/moment-duration-format.js",
             "../node_modules/moment/min/moment.min.js",
             "../node_modules/chart.js/dist/Chart.js",
             "../node_modules/easy-pie-chart/dist/easypiechart.js",

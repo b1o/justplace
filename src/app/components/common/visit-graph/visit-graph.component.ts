@@ -1,3 +1,5 @@
+import 'moment-duration-format';
+
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -60,20 +62,23 @@ export class VisitGraphComponent implements OnInit {
             yAxes: [{
                 ticks: {
                     callback: (v) => { return this.epoch_to_hh_mm_ss(v) },
-                    stepSize: 300
+                    stepSize: 600000 * 3
                 }
             }]
         },
-
+        tooltips: {
+            callbacks: {
+                label: (tooltipItem, data) => {
+                    return data.datasets[tooltipItem.datasetIndex].label + ': ' + this.epoch_to_hh_mm_ss(tooltipItem.yLabel)
+                }
+            }
+        }
     };
 
     constructor(private cd: ChangeDetectorRef) { }
 
     public epoch_to_hh_mm_ss(time) {
-        console.log(time)
-        var minutes = Math.floor(time / 60);
-        var seconds = time - minutes * 60;
-        return `${minutes}:${seconds}`
+        return moment.duration(time, 'milliseconds').format('hh[h] mm[m] ss[s]', { trim: false })
     }
 
     public chartClicked(e: any): void {
@@ -90,18 +95,21 @@ export class VisitGraphComponent implements OnInit {
         return _(sessions)
             .filter((s: any) => s.endTime != null)
             .groupBy((s: any) => {
-                return moment(s.startTime).startOf('day')
+                return moment(new Date(s.startTime)).startOf('day')
             }).map((o, key) => {
                 let total = 0;
                 for (let s of o) {
+                    const start = moment(new Date(s.endTime));
+                    const end = moment(new Date(s.startTime))
+                    // console.log(moment.duration(s.endTime - s.startTime, 'milliseconds').format('mm:ss', { trim: false }))
                     total += (s.endTime - s.startTime);
                 }
 
                 return {
                     day: key,
-                    total: total / (1000 * 60)
+                    total: total//moment.duration(total, 'milliseconds').format('mm:ss', { trim: false })
                 }
-            }).sortBy(s => new Date(s.day)).toArray().value()
+            }).sortBy(s => moment(s.day).day()).toArray().value()
     }
 
     ngOnInit() {
@@ -110,7 +118,7 @@ export class VisitGraphComponent implements OnInit {
         this.chartDatasets[0].data = this.parseSessions(this.sessions).map(s => s.total);
 
 
-        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('dddd'))
+        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('d/M'))
         console.log(this.chartLabels)
 
         console.log(this.chartDatasets)
