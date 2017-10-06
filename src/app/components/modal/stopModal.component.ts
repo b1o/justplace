@@ -5,6 +5,8 @@ import { UsersAction } from '../../store/actions/users.action';
 import { ModalDirective } from '../../typescripts/free/modals/index';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+export const pricePerHour = 10;
+
 @Component({
     selector: 'stop-modal',
     templateUrl: 'stopModal.component.html'
@@ -19,8 +21,6 @@ export class StopModalComponent implements OnInit {
     private price = '0';
     private id;
 
-    private pricePerHour = 10;
-
     constructor(
         private usersAction: UsersAction,
         private ngRedux: NgRedux<IAppState>
@@ -33,12 +33,12 @@ export class StopModalComponent implements OnInit {
         .select(state => state.allUsers)
         .subscribe(data => {
             if (this.user.currentSession) {
-                this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime);               
+                this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime === 0 ? this.user.currentSession.now : data.currentTime);               
             }
             
-            this.minutes = (data.currentTime - this.user.currentSession.startTime) / 60000;
+            this.minutes = ((data.currentTime === 0 ? this.user.currentSession.now : data.currentTime) - this.user.currentSession.startTime) / 60000;
 
-            this.price = ((this.minutes / 60) * this.pricePerHour).toFixed(2);
+            this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
         })
         this.stopForm.show();
     }

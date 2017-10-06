@@ -82,6 +82,7 @@ function registerUser(state, payload) {
 
 function getUserInfo(state: IUsersState, payload) {
     if (payload) {
+        console.log('payload',payload)
         return { ...state, selectedUser: payload.obj as UserModel };
     }
 

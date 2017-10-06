@@ -7,6 +7,8 @@ import { UsersAction } from '../../store/actions/users.action';
 import { IAppState } from '../../store/app.state';
 import { StartModalComponent } from '../modal/startModal.component';
 
+import { pricePerHour } from '../modal/stopModal.component';
+
 @Component({
     selector: 'list-item',
     templateUrl: 'listItem.component.html',
@@ -20,6 +22,8 @@ export class ListItemComponent implements OnInit {
 
     private subscription: Subscription;
     private time;
+    private price = '0';
+    private minutes = 0;
 
     constructor(
         private usersAction: UsersAction,
@@ -40,7 +44,10 @@ export class ListItemComponent implements OnInit {
             .subscribe(data => {
                 if (this.user.currentSession) {
                     this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-                }                
+
+                    this.minutes = (data.currentTime - this.user.currentSession.startTime) / 60000;
+                    this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
+                }
             })
     }
 

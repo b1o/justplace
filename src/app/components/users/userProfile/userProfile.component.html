@@ -23,8 +23,8 @@
                                 Active session: <small *ngIf="currentSession">{{currentSession.startTime | date:'short'}}</small>
                                 <small class="text-muted d-block" *ngIf="currentSession">{{currentSession.startTime | amTimeAgo}}</small>
                             </div>
-                            <button *ngIf="currentSession" class="btn-sm btn btn-warning">Stop</button>
-                            <button *ngIf="!currentSession" class="btn-sm btn btn-success">Start</button>
+                            <button *ngIf="currentSession" class="btn-sm btn btn-warning" (click)="stopModal.open(userWithCurrSession)">Stop</button>
+                            <button *ngIf="!currentSession" class="btn-sm btn btn-success" (click)="startModal.open(user)">Start</button>
                         </div>
                         <hr class="my-1">
                         <fancy-timer *ngIf="currentSession" [startTime]="currentSession.startTime"></fancy-timer>
@@ -48,3 +48,6 @@
         </div>
     </div>
 </div>
+
+<start-modal #startModal></start-modal>
+<stop-modal #stopModal></stop-modal>

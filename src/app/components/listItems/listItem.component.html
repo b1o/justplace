@@ -32,6 +32,7 @@
             <div *ngIf="user.currentSession" class="start-time">
                 <small><strong>Started:</strong> {{user.currentSession.startTime | date:'short'}}</small>
                 <small class="text-muted" style="display: block;"> {{user.currentSession.startTime | amTimeAgo}} </small>
+                <small class="text-muted" style="display: block;"> {{price}} лв</small>
             </div>
             <div class="timer">
                 <h3 *ngIf='user.currentSession' class="animated flipInX">{{time}}</h3>
