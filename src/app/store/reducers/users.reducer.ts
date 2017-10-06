@@ -39,7 +39,7 @@ function startUser(state, action) {
             return u.id === userId ? { ...u, currentSession: result.obj } : u;
         });
 
-        const newState = { ...state, allUsers: users, currentTime: result.obj.currentTime };
+        const newState = { ...state, allUsers: users, currentTime: result.obj.now };
         return newState;
     }
 
