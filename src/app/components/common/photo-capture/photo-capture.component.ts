@@ -19,7 +19,7 @@ export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
     private image: HTMLImageElement;
     private canvas: HTMLCanvasElement;
 
-    private width = 720;
+    private width = 500;
     private height = 0;
     private streaming = false;
     private stream;

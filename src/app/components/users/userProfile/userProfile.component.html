@@ -3,15 +3,18 @@
         <div class="card card-cascade narrower">
             <div class="row ">
                 <div class="card-body col-5">
-                    <div class="form-header info-color accent-1">
+                    <div class="form-header info-color accent-1 mb-3">
                         User info
 
                     </div>
-                    <div class="user-info p-1 d-flex align-items-start">
-                        <div class="avatar z-depth-1" style="width: 128px; height: auto;">
+                    <div class="user-info p-1 d-flex align-items-center">
+                        <div class="circle-avatar pt-0 z-depth-1 mr-1" [ngStyle]="{'background-image': 'url(' + user.pictureName + ')'}">
+                            <!-- <img class="rounded-circle img-fluid" src="{{user.pictureName}}" alt="No Image"> -->
+                        </div>
+                        <!-- <div class="avatar z-depth-1" style="width: 128px; height: auto;">
 
                             <img class="img-fluid" src="{{user.pictureName}}" alt="">
-                        </div>
+                        </div> -->
                         <div class="names ml-2" style="flex-grow:1">
                             <h3 class="m-0 p-0 text-capitalize">{{user.name}} {{user.lastName}}</h3>
                             <hr class="m-0 p-0">

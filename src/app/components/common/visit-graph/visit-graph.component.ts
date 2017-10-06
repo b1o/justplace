@@ -24,7 +24,7 @@ export class VisitGraphComponent implements OnInit {
     public chartType: string = 'bar';
 
     public chartDatasets: Array<any> = [
-        { data: [], label: 'Time' },
+        { data: [], label: 'Time Spent' },
     ];
 
     public chartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
@@ -62,7 +62,8 @@ export class VisitGraphComponent implements OnInit {
             yAxes: [{
                 ticks: {
                     callback: (v) => { return this.epoch_to_hh_mm_ss(v) },
-                    stepSize: 600000 * 3
+                    stepSize: 600000 * 3,
+                    beginAtZero: true
                 }
             }]
         },

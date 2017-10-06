@@ -13,8 +13,8 @@
 </td> -->
 
 <div routerLink="/users/{{user.id}}" style="background-color: white" class="media mb-1 border p-2 z-depth-1">
-    <a class="media-left waves-light" style="width:120px; max-height:120px;">
-        <img class="rounded-circle img-fluid" src="{{user.pictureName}}" alt="No Image">
+    <a class="media-left waves-light circle-avatar z-depth-1 mr-1" [ngStyle]="{'background-image': 'url(' + user.pictureName + ')'}">
+        <!-- <img class="rounded-circle img-fluid" src="{{user.pictureName}}" alt="No Image"> -->
     </a>
     <div class="media-body" style="position:relative; align-self:stretch">
         <div class="d-flex justify-content-between align-items-center">

@@ -1,5 +1,6 @@
 import { NgRedux } from '@angular-redux/store';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserModel } from '../../../models/users/user.model';
 import { UsersService } from '../../services/users.service';
@@ -18,7 +19,8 @@ export const CHANGE_PAGE = '[LAYOUT] previous page';
 export class UsersAction {
     constructor(
         private usersService: UsersService,
-        private ngRedux: NgRedux<IAppState>
+        private ngRedux: NgRedux<IAppState>,
+        private router: Router
     ) { }
 
     getUserInfo(id: number) {
@@ -32,7 +34,7 @@ export class UsersAction {
     }
 
     deselectUser() {
-        this.ngRedux.dispatch<IAction>({type: DESELECT_USER})
+        this.ngRedux.dispatch<IAction>({ type: DESELECT_USER })
     }
 
     getAllUsers(url) {
@@ -64,6 +66,7 @@ export class UsersAction {
             .subscribe(res => {
                 this.ngRedux
                     .dispatch<IAction>({ type: REGISTER_USER, payload: res });
+                this.router.navigateByUrl('/users/' + res.obj.id)
             })
     }
 
@@ -78,15 +81,15 @@ export class UsersAction {
                 })
             })
     }
-    
+
     changePage(pageUrl) {
         this.usersService
             .changePage(pageUrl)
             .subscribe(result => {
                 this.ngRedux
-                    .dispatch({ 
-                        type: CHANGE_PAGE, 
-                        result 
+                    .dispatch({
+                        type: CHANGE_PAGE,
+                        result
                     });
             })
     }
