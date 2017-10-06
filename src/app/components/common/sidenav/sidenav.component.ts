@@ -1,6 +1,6 @@
-import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
 
 import { IAppState } from '../../../store/app.state';
 import { SidenavComponent } from '../../../typescripts/pro';

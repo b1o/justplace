@@ -1,3 +1,5 @@
+import 'moment/locale/bg';
+
 import { AgmCoreModule } from '@agm/core';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
@@ -22,6 +24,8 @@ import { LoginComponent } from './components/login/login.component';
 import { StartModalComponent } from './components/modal/startModal.component';
 import { StopModalComponent } from './components/modal/stopModal.component';
 import { RegisterUserComponent } from './components/users/registerUser/registerUser.component';
+import { UserSessionsHistoryComponent } from './components/users/sessions-history/sessions-history.component';
+import { UserSearchComponent } from './components/users/user-search/user-search.component';
 import { UserProfileComponent } from './components/users/userProfile/userProfile.component';
 import { AllUsersComponent } from './components/usersList/allUsers.component';
 import { config } from './config';
@@ -36,8 +40,6 @@ import { UsersAction } from './store/actions/users.action';
 import { MDBBootstrapModule } from './typescripts/free';
 import { MDBBootstrapModulePro } from './typescripts/pro';
 import { MDBSpinningPreloader } from './typescripts/pro/';
-
-import 'moment/locale/bg'
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import 'moment/locale/bg'
     UserProfileComponent,
     VisitGraphComponent,
     PaginationComponent,
-    FancyTimerComponent
+    FancyTimerComponent,
+    UserSessionsHistoryComponent,
+    UserSearchComponent
   ],
   imports: [
     NgReduxModule,
@@ -100,6 +104,7 @@ export class AppModule {
           }
         }
       })
+
 
     this.ngRedux.provideStore(store);
     this.ngReduxRouter.initialize()

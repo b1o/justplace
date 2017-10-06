@@ -12,6 +12,7 @@ export const USER_STOP = 'timer/STOP';
 export const REGISTER_USER = 'users/register';
 export const GET_USER_INFO = 'users/GET_INFO';
 export const DESELECT_USER = 'users/deselect_current';
+export const USER_SEARCH = 'users/search';
 
 export const CHANGE_PAGE = '[LAYOUT] previous page';
 
@@ -66,8 +67,17 @@ export class UsersAction {
             .subscribe(res => {
                 this.ngRedux
                     .dispatch<IAction>({ type: REGISTER_USER, payload: res });
-                this.router.navigateByUrl('/users/' + res.obj.id)
-            })
+                this.router.navigateByUrl('/users/' + res.obj.id);
+            });
+    }
+
+    searchUser(term) {
+        this.usersService
+            .searchUser(term)
+            .subscribe(res => {
+                this.ngRedux
+                    .dispatch<IAction>({ type: USER_SEARCH, payload: res });
+            });
     }
 
     stop(id) {

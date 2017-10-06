@@ -22,9 +22,11 @@ export class LoginActions {
                 this.ngRedux.dispatch({
                     type: USER_LOGGED_IN,
                     result
-                })
+                });
             })
     }
+
+
 
     logout() {
         this.authService

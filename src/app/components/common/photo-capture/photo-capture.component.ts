@@ -19,8 +19,8 @@ export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
     private image: HTMLImageElement;
     private canvas: HTMLCanvasElement;
 
-    private width = 500;
-    private height = 0;
+    private width = 640;
+    private height = 480;
     private streaming = false;
     private stream;
     private photoBlob: Blob;
@@ -107,7 +107,7 @@ export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
 
         this.video.addEventListener('canplay', (ev) => {
             this.loading = false;
-            this.height = this.video.videoHeight / (this.video.videoWidth / this.width);
+            // this.height = this.video.videoHeight / (this.video.videoWidth / this.width);
             this.video.setAttribute('width', this.width.toString());
             this.video.setAttribute('height', this.height.toString());
             this.canvas.setAttribute('width', this.width.toString());

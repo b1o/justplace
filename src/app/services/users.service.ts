@@ -21,6 +21,16 @@ export class UsersService {
             .get(url);
     }
 
+    searchUser(term) {
+        const url = 'users/search';
+        const data = {
+            searchString: term.term,
+            isActive: term.isActive
+        };
+
+        return this.networkService.post(url, data);
+    }
+
     start(userInfo) {
         let id = userInfo.user.id;
         let url = 'timer/' + id;

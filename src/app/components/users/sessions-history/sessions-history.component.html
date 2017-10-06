@@ -1,0 +1,6 @@
+<h1 class="card-title">Sessions History</h1>
+<div class="sessions">
+    <div *ngFor="let session of sessions">
+        <p *ngIf="session.endTime">{{session.startTime | date:'short'}} - {{session.endTime | date:'short'}}</p>
+    </div>
+</div>

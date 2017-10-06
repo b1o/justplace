@@ -11,7 +11,10 @@
 
             <!--Body-->
             <div class="row">
-                <form #form="ngForm" (submit)="register()" class="col-6">
+                <div class="col-12 col-md-6 photo">
+                    <app-photo-capture (photoTaken)="onPhotoTaken($event)"></app-photo-capture>
+                </div>
+                <form #form="ngForm" (submit)="register()" class="col-12 col-md-6">
                     <div class="md-form">
                         <i class="fa fa-user prefix grey-text"></i>
                         <input name="name" type="text" [(ngModel)]="user.name" id="firstName" class="form-control" mdbActive>
@@ -37,9 +40,7 @@
                     </div>
                 </form>
 
-                <div class="col-6 photo">
-                    <app-photo-capture (photoTaken)="onPhotoTaken($event)"></app-photo-capture>
-                </div>
+
 
             </div>
         </div>

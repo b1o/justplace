@@ -82,11 +82,7 @@ export class VisitGraphComponent implements OnInit {
         return moment.duration(time, 'milliseconds').format('hh[h] mm[m] ss[s]', { trim: false })
     }
 
-    public chartClicked(e: any): void {
-        console.log(e)
-        if (e.active) {
-            console.log(e.active[0]._view.label)
-        }
+    public chartClicked(points, event, barClicked): void {
     }
 
     public chartHovered(e: any): void {
@@ -119,7 +115,7 @@ export class VisitGraphComponent implements OnInit {
         this.chartDatasets[0].data = this.parseSessions(this.sessions).map(s => s.total);
 
 
-        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('d/M'))
+        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('d MMM'))
         console.log(this.chartLabels)
 
         console.log(this.chartDatasets)

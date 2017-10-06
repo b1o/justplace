@@ -1,18 +1,18 @@
-import { DESELECT_USER } from './../actions/users.action';
 import { UserModel } from '../../../models/users/user.model';
 import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
-import { 
-    ALL_USERS_FETCHED, 
-    GET_USER_INFO, 
-    REGISTER_USER, 
-    USER_STARTED, 
+import {
+    ALL_USERS_FETCHED,
+    CHANGE_PAGE,
+    GET_USER_INFO,
+    REGISTER_USER,
+    USER_STARTED,
     USER_STOP,
-    CHANGE_PAGE 
 } from '../actions/users.action';
 import { allUsersInitialState, IUsersState } from '../state/users.state';
+import { DESELECT_USER, USER_SEARCH } from './../actions/users.action';
 
 function getAllUsers(state, action) {
-    let result = action.result
+    let result = action.result || action.payload
 
     if (result.obj) {
         return Object.assign({}, state, {
@@ -88,6 +88,15 @@ function getUserInfo(state: IUsersState, payload) {
     return state;
 }
 
+function userSearch(state: IUsersState, payload) {
+    if (payload) {
+        console.log(payload)
+        return { ...state, allUsers: [...payload.obj] };
+    }
+
+    return state;
+}
+
 export function usersReducer(state = allUsersInitialState, action) {
     switch (action.type) {
         case ALL_USERS_FETCHED:
@@ -106,6 +115,8 @@ export function usersReducer(state = allUsersInitialState, action) {
             return { ...state, selectedUser: null }
         case CHANGE_PAGE:
             return getAllUsers(state, action);
+        case USER_SEARCH:
+            return getAllUsers(state, action)
         default:
             return state;
     }

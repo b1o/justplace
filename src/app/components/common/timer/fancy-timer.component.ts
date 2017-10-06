@@ -1,8 +1,9 @@
-import { IAppState } from '../../../store/index';
 import { NgRedux } from '@angular-redux/store/lib/src/components/ng-redux';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
+
+import { IAppState } from '../../../store/index';
 
 @Component({
     selector: 'fancy-timer',
