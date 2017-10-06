@@ -1,3 +1,4 @@
+import { Observable, Subscription } from 'rxjs/Rx';
 import { StopModalComponent } from '../../modal/stopModal.component';
 import { StartModalComponent } from '../../modal/startModal.component';
 import { NgRedux } from '@angular-redux/store';
@@ -24,13 +25,20 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private storeSub;
     
     private userWithCurrSession;
+    private timerSubscription: Subscription
 
 
     constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute, private usersActions: UsersAction, private ngRedux: NgRedux<IAppState>) {
 
     }
 
+    updateCurrentTime() {
+        let timer = Observable.timer(0, 1000);
+        this.timerSubscription = timer.subscribe(t => this.ngRedux.dispatch({ type: 'UPDATE_TIME' }));      
+    }
+
     ngOnInit() {
+        this.updateCurrentTime();
         this.storeSub = this.ngRedux
             .select(state => state.allUsers.selectedUser)
             .filter(s => s != null)
@@ -38,9 +46,15 @@ export class UserProfileComponent implements OnInit, OnDestroy {
                 this.user = { ...state };
                 this.currentSession = this.user.sessions.filter(s => s.endTime === null)[0]
                 console.log(this.currentSession)
-                
+
                 this.userWithCurrSession = { ...this.user, currentSession: this.currentSession};
             })
+
+        // this.ngRedux
+        //     .select(state => state.allUsers)
+        //     .subscribe(data => {
+        //         console.log(data)
+        //     })
         this.route.params
             .subscribe(params => {
                 this.id = params['id'];
@@ -57,5 +71,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
             this.user = null
             this.storeSub.unsubscribe()
         }
+        this.timerSubscription.unsubscribe();
     }
 }

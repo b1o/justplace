@@ -1,6 +1,6 @@
+import { Observable, Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
 
 import { UsersAction } from '../../store/actions/users.action';
 import { IAppState } from '../../store/index';
@@ -14,7 +14,8 @@ export const UPDATE_TIME = 'timer/UPDATE';
 export class AllUsersComponent {
     private responseUsers;
     private currentTime;
-    private subscribtion: Subscription;
+    private timerSubscription: Subscription;
+    private allUserSubscription: Subscription;
     private response;
 
     constructor(
@@ -24,13 +25,13 @@ export class AllUsersComponent {
 
     updateCurrentTime() {
         let timer = Observable.timer(0, 1000);
-        this.subscribtion = timer.subscribe(t => this.ngRedux.dispatch({ type: UPDATE_TIME }));
+        this.timerSubscription = timer.subscribe(t => this.ngRedux.dispatch({ type: UPDATE_TIME }));      
     }
 
     getAllUsers() {
         let url = 'users';
         this.usrsAction.getAllUsers(url);
-        this.ngRedux
+        this.allUserSubscription = this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {
                 this.responseUsers = data.allUsers;
@@ -40,12 +41,12 @@ export class AllUsersComponent {
                     "totalPages": data.totalPages,
                     "currentPage": data.currentPage
                 };
-
+                
                 // let users = []
                 // users = this.responseUsers.map(u => {
                 //     return u.currentSession === null ? 0 : 1;
                 // });
-
+                
                 // if (users.indexOf(1)) {
                 //     console.log(users.indexOf(1));
                 //     //this.subscribtion.unsubscribe();
@@ -56,10 +57,11 @@ export class AllUsersComponent {
     ngOnInit() {
         this.updateCurrentTime();
         this.getAllUsers();
-
+        
     }
 
     ngOnDestroy() {
-        this.subscribtion.unsubscribe();
+        this.timerSubscription.unsubscribe();
+        this.allUserSubscription.unsubscribe();
     }
 }

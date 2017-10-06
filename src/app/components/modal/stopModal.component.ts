@@ -46,6 +46,7 @@ export class StopModalComponent implements OnInit {
     stop() {
         this.subscription.unsubscribe()
         this.usersAction.stop(this.id);
+        this.stopForm.hide();
     }
 
     getGameTime(startTime, currentTime) {

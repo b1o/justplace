@@ -58,6 +58,8 @@ export class UsersAction {
                     result,
                     userInfo
                 });
+                // ????????
+                this.getUserInfo(userInfo.user.id);
             });
     };
 
@@ -88,7 +90,9 @@ export class UsersAction {
                     type: USER_STOP,
                     result,
                     id
-                })
+                });
+                // ????????
+                this.getUserInfo(id);
             })
     }
 
