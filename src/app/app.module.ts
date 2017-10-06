@@ -37,6 +37,8 @@ import { MDBBootstrapModule } from './typescripts/free';
 import { MDBBootstrapModulePro } from './typescripts/pro';
 import { MDBSpinningPreloader } from './typescripts/pro/';
 
+import 'moment/locale/bg'
+
 @NgModule({
   declarations: [
     AppComponent,

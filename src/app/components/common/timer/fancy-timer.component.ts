@@ -1,3 +1,5 @@
+import { IAppState } from '../../../store/index';
+import { NgRedux } from '@angular-redux/store/lib/src/components/ng-redux';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
@@ -39,15 +41,18 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
     private interval;
 
 
-    constructor(private cd: ChangeDetectorRef) { }
+    constructor(private cd: ChangeDetectorRef, private ngRedux: NgRedux<IAppState>) { }
 
     private scaledValue = (cur) => (100 * cur / 60);
 
     ngOnInit() {
-        const start = moment(moment(moment.now()).diff(moment(this.startTime)))
+        console.log(moment.now(), this.startTime)
+
+        const start = moment( moment.now() - this.startTime)
+        let hours = Math.floor((moment.now() - this.startTime) / (60000 * 60));
+        console.log(hours)
         this.minutes = start.minutes();
         this.sec = start.seconds()
-        this.hours = start.hours()
         this.calculatePercentages()
 
         this.interval = Observable.timer(200, 1000)
