@@ -48,9 +48,10 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         console.log(moment.now(), this.startTime)
 
-        const start = moment( moment.now() - this.startTime)
-        let hours = Math.floor((moment.now() - this.startTime) / (60000 * 60));
-        console.log(hours)
+        //const start = moment( moment.now() - this.startTime)
+        const start = moment.duration((moment.now() - this.startTime), 'milliseconds')
+        this.hours = Number(start.hours());//Math.floor((moment.now() - this.startTime) / (60000 * 60));
+
         this.minutes = start.minutes();
         this.sec = start.seconds()
         this.calculatePercentages()
