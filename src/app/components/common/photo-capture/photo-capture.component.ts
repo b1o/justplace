@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 
 import { UploadFile } from '../../../typescripts/pro/file-input/index';
 
@@ -7,7 +7,7 @@ import { UploadFile } from '../../../typescripts/pro/file-input/index';
     templateUrl: 'photo-capture.component.html'
 })
 
-export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
+export class PhotoCaptureComponent implements OnInit, OnDestroy {
 
     @Output() photoTaken = new EventEmitter()
 
@@ -98,7 +98,7 @@ export class PhotoCaptureComponent implements AfterViewInit, OnDestroy {
             })
     }
 
-    ngAfterViewInit() {
+    ngOnInit() {
         console.log(this.videoElementRef, this.imageElementRef, this.canvasElementRef)
 
         this.video = this.videoElementRef.nativeElement;

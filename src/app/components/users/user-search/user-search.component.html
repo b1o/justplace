@@ -1,12 +1,6 @@
 <form class="search-form" role="search">
     <div class="form-group mb-1 waves-light" mdbRippleRadius>
-
-        <input #search name="term" (keyup)="term.next({term: search.value, isActive: active.checked})" type="text" class="form-control" placeholder="Search">
-
-    </div>
-    <div class="from-group">
-        <input #active (change)="term.next({term: search.value, isActive: active.checked})" type="checkbox" id="checkbox1">
-        <label for="checkbox1">Active</label>
+        <input #search name="term" (keyup)="term.next({term: search.value})" type="text" class="form-control" placeholder="Търси">
     </div>
 </form>
 <hr>

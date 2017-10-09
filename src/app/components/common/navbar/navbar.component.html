@@ -14,13 +14,15 @@
 
     <ul *ngIf="isLoggedIn" class="nav navbar-nav nav-flex-icons ml-auto">
         <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link waves-light" routerLink="/users/new" mdbRippleRadius><i class="fa fa-plus text-success"></i> <span class="clearfix d-none d-sm-inline-block">Register user</span></a>
+            <a class="nav-link waves-light" routerLink="/users/new" mdbRippleRadius><i class="fa fa-plus text-success"></i> <span class="clearfix d-none d-sm-inline-block">Регистрирай потребител</span></a>
         </li>
+        <li class="nav-item active">
+            <a class="nav-link waves-light " (click)="getActiveUsers()" mdbRippleRadius><i class="fa fa-users text-success"></i> <span class="clearfix d-none d-sm-inline-block">Активни потребители</span></a>
         <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link waves-light" routerLink="/users" mdbRippleRadius><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">Users</span></a>
+            <a class="nav-link waves-light" routerLink="/users" mdbRippleRadius><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">Потребители</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">Еxit</span></a>
+            <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">Изход</span></a>
         </li>
 
     </ul>
@@ -28,7 +30,7 @@
     <ul *ngIf="!isLoggedIn" class="nav navbar-nav nav-flex-icons ml-auto">
 
         <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link waves-light" routerLink="/login" mdbRippleRadius><i class="fa fa-sign-in"></i> <span class="clearfix d-none d-sm-inline-block">Login</span></a>
+            <a class="nav-link waves-light" routerLink="/login" mdbRippleRadius><i class="fa fa-sign-in"></i> <span class="clearfix d-none d-sm-inline-block">Влез в системата</span></a>
         </li>
 
     </ul>

@@ -6,7 +6,9 @@ import {
     GET_USER_INFO,
     REGISTER_USER,
     USER_STARTED,
+    USER_SEARCH,
     USER_STOP,
+    GET_ACTIVE_USERS
 } from '../actions/users.action';
 import { allUsersInitialState, IUsersState } from '../state/users.state';
 import { DESELECT_USER } from './../actions/users.action';
@@ -94,6 +96,24 @@ function getUserInfo(state: IUsersState, payload) {
     return state;
 }
 
+function searchUser(state, payload) {
+    if (payload.obj) {
+        return { ...state, allUsers: payload.obj.object }
+    }
+
+    return state;
+}
+
+function getActiveUsers(state, payload) {
+    console.log(payload.obj.object)
+
+    if (payload.obj) {
+        return { ...state, allUsers: payload.obj.object.user }
+    }
+
+    return state;
+}
+
 export function usersReducer(state = allUsersInitialState, action) {
     switch (action.type) {
         case ALL_USERS_FETCHED:
@@ -112,6 +132,10 @@ export function usersReducer(state = allUsersInitialState, action) {
             return { ...state, selectedUser: null }
         case CHANGE_PAGE:
             return getAllUsers(state, action);
+        case USER_SEARCH:
+            return searchUser(state, action.payload);
+        case GET_ACTIVE_USERS:
+            return getActiveUsers(state, action.payload);
         default:
             return state;
     }

@@ -1,3 +1,4 @@
+import { UsersAction } from '../../../store/actions/users.action';
 import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +22,9 @@ export class NavbarComponent implements OnInit {
         private ngRedux: NgRedux<IAppState>,
         private loginActions: LoginActions,
         private router: Router,
-        private layoutActions: LayoutActions) { }
+        private layoutActions: LayoutActions,
+        private usersAction: UsersAction
+    ) { }
 
     logout() {
         this.loginActions.logout();
@@ -29,6 +32,10 @@ export class NavbarComponent implements OnInit {
 
     toggleSidenav() {
         this.sidenavOpened ? this.layoutActions.closeSidenav() : this.layoutActions.openSidenav();
+    }
+
+    getActiveUsers() {
+        this.usersAction.getActiveUsers();
     }
 
     ngOnInit() {

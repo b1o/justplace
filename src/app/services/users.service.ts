@@ -22,13 +22,20 @@ export class UsersService {
     }
 
     searchUser(term) {
-        const url = 'users/search';
+        const searchUrl = 'users?name=';
         const data = {
-            searchString: term.term,
-            isActive: term.isActive
+            searchString: term.term
         };
+        
+        return this.networkService
+            .get(`${searchUrl}${data.searchString}`);
+    }
 
-        return this.networkService.post(url, data);
+    getActiveUsers() {
+        let url = 'users/active';
+        
+        return this.networkService
+            .get(url);
     }
 
     start(userInfo) {
