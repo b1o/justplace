@@ -24,7 +24,7 @@ export class VisitGraphComponent implements OnInit {
     public chartType: string = 'bar';
 
     public chartDatasets: Array<any> = [
-        { data: [], label: 'Time Spent' },
+        { data: [], label: 'Прекарано време' },
     ];
 
     public chartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];

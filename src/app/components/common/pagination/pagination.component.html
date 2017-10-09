@@ -3,14 +3,14 @@
 
         <!--First-->
         <li [attr.class]='response.firstPage ? "page-item disabled" : "page-item"'>
-            <a class="page-link" (click)='changePage(0)' mdbRippleRadius>First</a>
+            <a class="page-link" (click)='changePage(0)' mdbRippleRadius>Първа</a>
         </li>
 
         <!--Arrow left-->
         <li [attr.class]='response.currentPage > 0 ? "page-item" : "page-item disabled"'>
             <a (click)='changePage(currentPage-1)' class="page-link" mdbRippleRadius aria-label="Previous">
                 <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
+                <span class="sr-only">Предишна</span>
             </a>
         </li>
 
@@ -23,13 +23,13 @@
         <li [attr.class]='response.currentPage < response.totalPages-1 ? "page-item" : "page-item disabled"'>
             <a (click)='changePage(currentPage+1)' class="page-link" mdbRippleRadius aria-label="Next">
                 <span aria-hidden="true">»</span>
-                <span class="sr-only">Next</span>
+                <span class="sr-only">Следваща</span>
             </a>
         </li>
 
         <!--First-->
         <li [attr.class]='response.lastPage ? "page-item disabled" : "page-item"'>
-            <a class="page-link" (click)='changePage(totalPages-1)'>Last</a>
+            <a class="page-link" (click)='changePage(totalPages-1)'>Последна</a>
         </li>
 
     </ul>

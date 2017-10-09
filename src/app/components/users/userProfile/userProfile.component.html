@@ -4,7 +4,7 @@
             <div class="row mx-0">
                 <div class="card-body col-12 col-md-5">
                     <div class="form-header info-color accent-1 mb-3">
-                        User info
+                        Информация за потребителя
 
                     </div>
                     <div class="user-info p-1 d-flex align-items-center">
@@ -20,20 +20,20 @@
                     <div class="timer p-2 mt-3">
                         <div class="heading d-flex justify-content-between align-items-end mt-2">
                             <div>
-                                Active session: <small *ngIf="currentSession">{{currentSession.startTime | date:'short'}}</small>
+                                Активна сесия: <small *ngIf="currentSession">{{currentSession.startTime | date:'short'}}</small>
                                 <small class="text-muted d-block" *ngIf="currentSession">{{currentSession.startTime | amTimeAgo}}</small>
                             </div>
-                            <button *ngIf="currentSession" class="btn-sm btn btn-warning" (click)="stopModal.open(userWithCurrSession)">Stop</button>
-                            <button *ngIf="!currentSession" class="btn-sm btn btn-success" (click)="startModal.open(user)">Start</button>
+                            <button *ngIf="currentSession" class="btn-sm btn btn-warning" (click)="stopModal.open(userWithCurrSession)">Стоп</button>
+                            <button *ngIf="!currentSession" class="btn-sm btn btn-success" (click)="startModal.open(user)">Старт</button>
                         </div>
                         <hr class="my-1">
                         <fancy-timer *ngIf="currentSession" [startTime]="currentSession.startTime"></fancy-timer>
-                        <small *ngIf="!currentSession" class="text-warning">No active session, you can start one by clicking start</small>
+                        <small *ngIf="!currentSession" class="text-warning">Няма активна сесия, започни като натиснеш старт</small>
                     </div>
                 </div>
                 <div class="card-body ml-auto col-12 col-md-7">
                     <div class="form-header info-color">
-                        Visitation graph
+                        График на посещенията
                         <visit-graph [sessions]="user.sessions "></visit-graph>
                     </div>
                 </div>

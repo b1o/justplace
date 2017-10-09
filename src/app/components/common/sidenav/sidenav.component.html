@@ -13,11 +13,12 @@
 
                 <!-- Collapsible link -->
                 <mdb-item>
-                    <mdb-item-head mdbRippleRadius><i class="fa fa-users"></i> Users</mdb-item-head>
+                    <mdb-item-head mdbRippleRadius><i class="fa fa-users"></i> Потребители</mdb-item-head>
                     <mdb-item-body>
                         <ul>
-                            <li><a routerLink="/users" class="waves-effect" mdbRippleRadius>Users list</a></li>
-                            <li><a routerLink="/users/new" class="waves-effect" mdbRippleRadius>Register New User</a></li>
+                            <li><a routerLink="/users" class="waves-effect" mdbRippleRadius>Всички потребители</a></li>
+                            <li><a (click)="getActiveUsers()" class="waves-effect" mdbRippleRadius>Активни потребител</a></li>
+                            <li><a routerLink="/users/new" class="waves-effect" mdbRippleRadius>Регистрирай потребител</a></li>
                         </ul>
                     </mdb-item-body>
                 </mdb-item>

@@ -1,24 +1,24 @@
 <h4 class="m-0 gray-text">
-    <i class="fa fa-photo prefix gray-text"></i> Photo
-    <small *ngIf="!hasCamera" class="text-danger">No camera detected <i (click)="init()" class="fa fa-refresh"></i> </small>
+    <i class="fa fa-photo prefix gray-text"></i> Снимка
+    <small *ngIf="!hasCamera" class="text-danger">Не е открита камера <i (click)="init()" class="fa fa-refresh"></i> </small>
 </h4>
 <hr>
 <div class="photo-wrapper flex-column d-flex justify-content-center align-items-center" style="height:auto;">
     <div [hidden]="!streaming" class="  camera" style="position:relative; height:auto">
         <video class="w-100 z-depth-1" #video id="video" style="height:auto;"></video>
-        <button (click)="takePhoto()" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Take photo</button>
+        <button (click)="takePhoto()" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Направи снимка</button>
     </div>
     <canvas style="display:none" #canvas id="canvas"></canvas>
     <div class="output-wrapper  z-depth-1" style="position:relative; height:auto">
-        <button (click)="init()" *ngIf="output && hasCamera" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Retake</button>
+        <button (click)="init()" *ngIf="output && hasCamera" style="position:absolute; top: 2px; right:0;" class="btn btn-sm btn-outline-success">Нова снимка</button>
         <img [hidden]="!output" #image class="img-fluid" alt="captured image">
     </div>
 
 
     <div *ngIf="!hasCamera && (!output || !uploadedImage)" class="file-field d-flex flex-column">
-        <small>upload photo instead</small>
+        <small>Избери от компютъра</small>
         <div class="btn btn-primary btn-sm waves-light" mdbRippleRadius>
-            <span>Choose file</span>
+            <span>Избери файл</span>
             <input type="file" (change)="onUploadOutput($event)">
         </div>
     </div>
