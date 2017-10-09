@@ -22,8 +22,7 @@ export class NavbarComponent implements OnInit {
         private ngRedux: NgRedux<IAppState>,
         private loginActions: LoginActions,
         private router: Router,
-        private layoutActions: LayoutActions,
-        private usersAction: UsersAction
+        private layoutActions: LayoutActions
     ) { }
 
     logout() {
@@ -32,10 +31,6 @@ export class NavbarComponent implements OnInit {
 
     toggleSidenav() {
         this.sidenavOpened ? this.layoutActions.closeSidenav() : this.layoutActions.openSidenav();
-    }
-
-    getActiveUsers() {
-        this.usersAction.getActiveUsers();
     }
 
     ngOnInit() {

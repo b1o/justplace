@@ -1,3 +1,4 @@
+import { ActiveUsersComponent } from './components/users/activeUsers/activeUsers.component';
 import 'moment/locale/bg';
 
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
@@ -60,7 +61,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     FancyTimerComponent,
     UserSessionsHistoryComponent,
     UserSearchComponent,
-    BasicTimerComponent
+    BasicTimerComponent,
+    ActiveUsersComponent
   ],
   imports: [
     NgReduxModule,
