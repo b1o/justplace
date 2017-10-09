@@ -1,8 +1,9 @@
 import { NgRedux } from '@angular-redux/store/lib/src/components/ng-redux';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { Observable } from 'rxjs/Observable';
 
+import { environment } from '../../../../environments/environment';
+import { TimerService } from '../../../services/timer.service';
 import { IAppState } from '../../../store/index';
 
 @Component({
@@ -37,28 +38,23 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
         }
     };
 
-
+    public price = '0';
     public timerSub;
-    private interval;
 
-
-    constructor(private cd: ChangeDetectorRef, private ngRedux: NgRedux<IAppState>) { }
+    constructor(private cd: ChangeDetectorRef, private ngRedux: NgRedux<IAppState>, private timerService: TimerService) { }
 
     private scaledValue = (cur) => (100 * cur / 60);
 
     ngOnInit() {
-        console.log(moment.now(), this.startTime)
 
-        //const start = moment( moment.now() - this.startTime)
         const start = moment.duration((moment.now() - this.startTime), 'milliseconds')
-        this.hours = Number(start.hours());//Math.floor((moment.now() - this.startTime) / (60000 * 60));
+        this.hours = Number(start.hours());
 
         this.minutes = start.minutes();
         this.sec = start.seconds()
         this.calculatePercentages()
 
-        this.interval = Observable.timer(200, 1000)
-        this.timerSub = this.interval.subscribe(tick => {
+        this.timerSub = this.timerService.getTimer().subscribe(tick => {
             this.sec++;
 
             if (this.sec >= 60) {
@@ -76,10 +72,10 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
             }
             this.calculatePercentages();
 
-
+            this.price = ((this.minutes / 60) * environment.pricePerHour).toFixed(2);
             // this.seconds.update(this.percent)
             this.cd.detectChanges()
-        })
+        });
     }
 
     ngAfterViewInit() {

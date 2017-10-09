@@ -1,13 +1,11 @@
-import { StopModalComponent } from '../modal/stopModal.component';
-import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
 
 import { UsersAction } from '../../store/actions/users.action';
 import { IAppState } from '../../store/app.state';
 import { StartModalComponent } from '../modal/startModal.component';
-
-import { pricePerHour } from '../modal/stopModal.component';
+import { StopModalComponent } from '../modal/stopModal.component';
 
 @Component({
     selector: 'list-item',
@@ -19,6 +17,8 @@ export class ListItemComponent implements OnInit {
     @Input() user;
     @ViewChild(StartModalComponent) startModal: StartModalComponent;
     @ViewChild(StopModalComponent) stopModal: StopModalComponent;
+
+    public startTime;
 
     private subscription: Subscription;
     private time;
@@ -40,18 +40,24 @@ export class ListItemComponent implements OnInit {
 
     ngOnInit() {
         this.subscription = this.ngRedux
-            .select(state => state.allUsers)
-            .subscribe(data => {
-                if (this.user.currentSession) {
-                    this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-
-                    this.minutes = (data.currentTime - this.user.currentSession.startTime) / 60000;
-                    this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
-                }
+            .select(state => state.allUsers.allUsers.filter((u: any) => u.id == this.user.id))
+            .subscribe(state => {
+                console.log(state)
             })
+
+        // this.subscription = this.ngRedux
+        //     .select(state => state.allUsers)
+        //     .subscribe(data => {
+        //         if (this.user.currentSession) {
+        //             this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
+
+        //             this.minutes = (data.currentTime - this.user.currentSession.startTime) / 60000;
+        //             this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
+        //         }
+        //     })
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe()
+        // this.subscription.unsubscribe()
     }
 }

@@ -1,9 +1,10 @@
-import { IAppState } from '../../store/index';
 import { NgRedux } from '@angular-redux/store';
-import { Subscription } from 'rxjs/Rx';
-import { UsersAction } from '../../store/actions/users.action';
-import { ModalDirective } from '../../typescripts/free/modals/index';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+
+import { UsersAction } from '../../store/actions/users.action';
+import { IAppState } from '../../store/index';
+import { ModalDirective } from '../../typescripts/free/modals/index';
 
 export const pricePerHour = 10;
 
@@ -13,6 +14,7 @@ export const pricePerHour = 10;
 })
 
 export class StopModalComponent implements OnInit {
+
     @ViewChild('form') stopForm: ModalDirective;
     private subscription: Subscription;
     private user;
@@ -30,16 +32,16 @@ export class StopModalComponent implements OnInit {
         this.user = user;
         this.id = user.id;
         this.subscription = this.ngRedux
-        .select(state => state.allUsers)
-        .subscribe(data => {
-            if (this.user.currentSession) {
-                this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime === 0 ? this.user.currentSession.now : data.currentTime);               
-            }
-            
-            this.minutes = ((data.currentTime === 0 ? this.user.currentSession.now : data.currentTime) - this.user.currentSession.startTime) / 60000;
+            .select(state => state.allUsers)
+            .subscribe(data => {
+                if (this.user.currentSession) {
+                    this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime === 0 ? this.user.currentSession.now : data.currentTime);
+                }
 
-            this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
-        })
+                this.minutes = ((data.currentTime === 0 ? this.user.currentSession.now : data.currentTime) - this.user.currentSession.startTime) / 60000;
+
+                this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
+            })
         this.stopForm.show();
     }
 
@@ -58,6 +60,6 @@ export class StopModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+
     }
 }

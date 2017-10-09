@@ -1,20 +1,26 @@
-import { DESELECT_USER } from './../actions/users.action';
 import { UserModel } from '../../../models/users/user.model';
 import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
-import { 
-    ALL_USERS_FETCHED, 
-    GET_USER_INFO, 
-    REGISTER_USER, 
-    USER_STARTED, 
+import {
+    ALL_USERS_FETCHED,
+    CHANGE_PAGE,
+    GET_USER_INFO,
+    REGISTER_USER,
+    USER_STARTED,
     USER_STOP,
-    CHANGE_PAGE 
 } from '../actions/users.action';
 import { allUsersInitialState, IUsersState } from '../state/users.state';
+import { DESELECT_USER } from './../actions/users.action';
 
 function getAllUsers(state, action) {
     let result = action.result
 
     if (result.obj) {
+        for (let u of result.obj.object) {
+            if (u.currentSession) {
+                u['price'] = '0';
+            }
+        }
+
         return Object.assign({}, state, {
             currentPage: result.obj.currentPage,
             firstPage: result.obj.firstPage,

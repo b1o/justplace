@@ -1,6 +1,5 @@
 import 'moment/locale/bg';
 
-import { AgmCoreModule } from '@agm/core';
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -17,6 +16,7 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { PaginationComponent } from './components/common/pagination/pagination.component';
 import { PhotoCaptureComponent } from './components/common/photo-capture/photo-capture.component';
 import { AppSidenavComponent } from './components/common/sidenav/sidenav.component';
+import { BasicTimerComponent } from './components/common/timer/basic-timer.component';
 import { FancyTimerComponent } from './components/common/timer/fancy-timer.component';
 import { VisitGraphComponent } from './components/common/visit-graph/visit-graph.component';
 import { ListItemComponent } from './components/listItems/listItem.component';
@@ -32,6 +32,7 @@ import { config } from './config';
 import { RoutesModule } from './routes.module';
 import { AuthService } from './services/auth.service';
 import { NetworkService } from './services/network.service';
+import { TimerService } from './services/timer.service';
 import { UsersService } from './services/users.service';
 import { IAppState, store } from './store';
 import { LayoutActions } from './store/actions/layout.actions';
@@ -58,7 +59,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     PaginationComponent,
     FancyTimerComponent,
     UserSessionsHistoryComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    BasicTimerComponent
   ],
   imports: [
     NgReduxModule,
@@ -71,10 +73,10 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     NgReduxRouterModule,
     NgbModule.forRoot(),
     MomentModule,
-    AgmCoreModule.forRoot({
-      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
-      apiKey: 'Your_api_key'
-    }),
+    // AgmCoreModule.forRoot({
+    //   https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
+    //   apiKey: 'Your_api_key'
+    // }),
     RoutesModule
   ],
   providers: [
@@ -84,7 +86,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     LoginActions,
     UsersAction,
     UsersService,
-    LayoutActions
+    LayoutActions,
+    TimerService
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
