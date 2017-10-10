@@ -21,7 +21,6 @@ export class RegisterUserComponent implements OnInit {
     }
 
     register() {
-        console.log(this.user);
         this.usersActions.registerUser(this.user);
     }
 

@@ -18,7 +18,6 @@ export class UserSearchComponent implements OnInit {
             .debounceTime(300)
             .distinctUntilChanged()
             .subscribe(t => {
-                console.log(t)
                 this.usersActions.searchUser(t)
             })
     }

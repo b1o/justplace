@@ -47,7 +47,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
                     .subscribe(state => {
                         this.user = { ...state };
                         this.currentSession = this.user.sessions.filter(s => s.endTime === null)[0]
-                        console.log(this.currentSession)
 
                         this.userWithCurrSession = { ...this.user, currentSession: this.currentSession };
                     })
@@ -55,7 +54,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        console.log('destroying profile')
         this.usersActions.deselectUser()
         if (this.storeSub) {
             this.user = null

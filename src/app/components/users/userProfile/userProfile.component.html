@@ -8,7 +8,7 @@
 
                     </div>
                     <div class="user-info p-1 d-flex align-items-center">
-                        <div class="circle-avatar pt-0 z-depth-1 mr-1" [ngStyle]="{'background-image': 'url(' + user.pictureName + ')'}">
+                        <div class="circle-avatar pt-0 z-depth-1 mr-1" [ngStyle]="{'background-image': user.pictureName ? ('url(' + user.pictureName + ')') : 'url(/assets/user.ico)'}">
                         </div>
 
                         <div class="names ml-2" style="flex-grow:1">

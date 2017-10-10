@@ -1,8 +1,7 @@
-import { UsersAction } from '../../../store/actions/users.action';
-import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
 
 import { LayoutActions } from '../../../store/actions/layout.actions';
 import { LoginActions } from '../../../store/actions/login.actions';
@@ -36,7 +35,6 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         this.subscription = this.ngRedux.select(state => state.loginUser)
             .subscribe(u => {
-                console.log('login component', u)
                 if (u.userAuthenticated) {
                     this.isLoggedIn = true;
                 } else {

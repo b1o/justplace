@@ -31,12 +31,10 @@ export class StopModalComponent implements OnInit {
 
     open(user) {
         this.user = user;
-        console.log(user)
         this.id = user.id;
         this.subscription = this.ngRedux
             .select(state => state.allUsers.allUsers.find((u: any) => u.id === this.id))
             .subscribe((data: any) => {
-                console.log(data)
                 if (this.user.currentSession) {
                     this.time = this.getGameTime(this.user.currentSession.startTime, moment.now());
                 }

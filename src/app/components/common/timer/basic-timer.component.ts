@@ -33,7 +33,6 @@ export class BasicTimerComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        console.log(this.session, this.userId)
         this.time = this.getTimeString()
         const start = moment.duration((moment.now() - this.session.startTime), 'milliseconds')
         this.hours = Number(start.hours());
@@ -54,7 +53,6 @@ export class BasicTimerComponent implements OnInit, OnDestroy {
 
                     this.hours = this.hours + 1;
                     this.minutes = 0;
-                    console.log(this.hours)
 
                 }
 

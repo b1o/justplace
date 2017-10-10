@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 
 import { UploadFile } from '../../../typescripts/pro/file-input/index';
 
@@ -35,7 +35,6 @@ export class PhotoCaptureComponent implements OnInit, OnDestroy {
     }
 
     public takePhoto() {
-        console.log(this.width, this.height)
         const context = this.canvas.getContext('2d');
         if (this.width && this.height) {
             this.canvas.width = this.width;
@@ -71,7 +70,6 @@ export class PhotoCaptureComponent implements OnInit, OnDestroy {
     public onUploadOutput(event) {
         this.output = event.target.files[0];
         const reader = new FileReader();
-        console.log(this.uploadedImage)
 
         reader.onload = (e: any) => {
             this.image.setAttribute('src', e.target.result);
@@ -99,7 +97,6 @@ export class PhotoCaptureComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        console.log(this.videoElementRef, this.imageElementRef, this.canvasElementRef)
 
         this.video = this.videoElementRef.nativeElement;
         this.image = this.imageElementRef.nativeElement;

@@ -35,7 +35,6 @@ export class AllUsersComponent {
         this.allUserSubscription = this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {
-                console.log('list update')
                 this.responseUsers = data.allUsers;
                 this.response = {
                     "lastPage": data.lastPage,

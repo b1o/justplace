@@ -25,7 +25,6 @@ export class StartModalComponent {
     ) { }
 
     open(user) {
-        console.log(user)
         this.id = user.id
         this.user = user
         this.startForm.show()

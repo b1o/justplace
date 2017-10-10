@@ -43,7 +43,6 @@ export class ListItemComponent implements OnInit {
     ngOnInit() {
         if (this.user.currentSession) {
             this.currentSession = this.user.currentSession
-            console.log(this.currentSession)
         }
 
         this.subscription = this.ngRedux
@@ -51,7 +50,6 @@ export class ListItemComponent implements OnInit {
             .subscribe((state: any) => {
                 if (state.currentSession) {
                     this.currentSession = state.currentSession
-                    console.log(this.currentSession)
                 }
             })
 

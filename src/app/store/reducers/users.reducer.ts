@@ -106,7 +106,6 @@ function searchUser(state, payload) {
 }
 
 function getActiveUsers(state, payload) {
-    console.log(payload.obj.object)
 
     if (payload.obj) {
         return { ...state, allUsers: payload.obj.object }

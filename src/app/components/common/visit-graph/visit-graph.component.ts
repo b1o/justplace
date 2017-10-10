@@ -112,16 +112,12 @@ export class VisitGraphComponent implements OnInit, OnChanges {
     }
 
     parseData() {
-        console.log('parsed', this.parseSessions(this.sessions))
         const parsed = this.parseSessions(this.sessions)
         // this.graph = this.graphRef.nativeElement;
         this.chartDatasets[0].data = parsed.map(s => s.total);
 
 
         this.chartLabels = parsed.map(s => moment(s.day).format('D MMM'))
-        console.log(this.chartLabels)
-
-        console.log(this.chartDatasets)
         this.ready = true;
         this.cd.detectChanges()
     }
@@ -132,11 +128,9 @@ export class VisitGraphComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes) {
         this.parseData()
-        console.log(changes)
     }
 
     ngOnDestroy() {
-        console.log('destroying graph')
         this.chartDatasets = [];
         this.chartLabels = []
     }

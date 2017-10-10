@@ -60,14 +60,12 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
             if (this.sec >= 60) {
                 this.minutes++;
                 this.sec = 0;
-                console.log(this.minPercent)
             }
 
             if (this.minutes >= 60) {
 
                 this.hours = this.hours + 1;
                 this.minutes = 0;
-                console.log(this.hours)
 
             }
             this.calculatePercentages();
