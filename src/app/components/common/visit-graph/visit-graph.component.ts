@@ -1,6 +1,6 @@
 import 'moment-duration-format';
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
@@ -15,7 +15,7 @@ export const days: Array<string> = ['Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat', '
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class VisitGraphComponent implements OnInit {
+export class VisitGraphComponent implements OnInit, OnChanges {
     @Input() sessions;
     @ViewChild('graph') graphRef;
     private graph: BaseChartDirective;
@@ -92,7 +92,7 @@ export class VisitGraphComponent implements OnInit {
         return _(sessions)
             .filter((s: any) => s.endTime != null)
             .groupBy((s: any) => {
-                return moment(new Date(s.startTime)).startOf('day')
+                return moment(s.startTime).startOf('day').toDate()
             }).map((o, key) => {
                 let total = 0;
                 for (let s of o) {
@@ -106,21 +106,33 @@ export class VisitGraphComponent implements OnInit {
                     day: key,
                     total: total//moment.duration(total, 'milliseconds').format('mm:ss', { trim: false })
                 }
-            }).sortBy(s => moment(s.day).day()).toArray().value()
+            }).sortBy((a, b) => {
+                return moment.utc(a).diff(moment.utc(b))
+            }).toArray().value()
     }
 
-    ngOnInit() {
+    parseData() {
         console.log('parsed', this.parseSessions(this.sessions))
+        const parsed = this.parseSessions(this.sessions)
         // this.graph = this.graphRef.nativeElement;
-        this.chartDatasets[0].data = this.parseSessions(this.sessions).map(s => s.total);
+        this.chartDatasets[0].data = parsed.map(s => s.total);
 
 
-        this.chartLabels = this.parseSessions(this.sessions).map(s => moment(s.day).format('d MMM'))
+        this.chartLabels = parsed.map(s => moment(s.day).format('D MMM'))
         console.log(this.chartLabels)
 
         console.log(this.chartDatasets)
         this.ready = true;
         this.cd.detectChanges()
+    }
+
+    ngOnInit() {
+        this.parseData()
+    }
+
+    ngOnChanges(changes) {
+        this.parseData()
+        console.log(changes)
     }
 
     ngOnDestroy() {

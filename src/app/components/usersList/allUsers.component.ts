@@ -1,5 +1,5 @@
 import { NgRedux } from '@angular-redux/store';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { UsersAction } from '../../store/actions/users.action';
@@ -9,7 +9,7 @@ export const UPDATE_TIME = 'timer/UPDATE';
 
 @Component({
     selector: 'all-users-list',
-    templateUrl: 'allUsers.component.html'
+    templateUrl: 'allUsers.component.html',
 })
 export class AllUsersComponent {
     private responseUsers;
@@ -20,7 +20,8 @@ export class AllUsersComponent {
 
     constructor(
         private usrsAction: UsersAction,
-        private ngRedux: NgRedux<IAppState>
+        private ngRedux: NgRedux<IAppState>,
+        private cd: ChangeDetectorRef
     ) { }
 
     updateCurrentTime() {
@@ -34,6 +35,7 @@ export class AllUsersComponent {
         this.allUserSubscription = this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {
+                console.log('list update')
                 this.responseUsers = data.allUsers;
                 this.response = {
                     "lastPage": data.lastPage,
@@ -52,6 +54,10 @@ export class AllUsersComponent {
                 //     //this.subscribtion.unsubscribe();
                 // }
             })
+    }
+
+    trackByFn(index, element) {
+        return element.id;
     }
 
     ngOnInit() {

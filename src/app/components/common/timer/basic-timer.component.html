@@ -1,3 +1,4 @@
 <div class="timer">
     <h3 class="animated flipInX">{{time}}</h3>
+    <user-session-price *ngIf="started" [userId]="userId"></user-session-price>
 </div>

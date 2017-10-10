@@ -32,9 +32,9 @@
             <div *ngIf="user.currentSession" class="start-time">
                 <small><strong>Стартирана:</strong> {{user.currentSession.startTime | date:'short'}}</small>
                 <small class="text-muted" style="display: block;"> {{user.currentSession.startTime | amTimeAgo}} </small>
-                <small class="text-muted" style="display: block;"> {{price}} лв</small>
+                <small class="text-muted" style="display: block;"> {{user.currentSession.userCount}} човек/а</small>
             </div>
-            <basic-timer [startTime]="user.currentSession?.startTime"></basic-timer>
+            <basic-timer [userId]="user.id" *ngIf="user.currentSession" [session]="user.currentSession"></basic-timer>
             <!-- <div class="timer">
                 <h3 *ngIf='user.currentSession' class="animated flipInX">{{time}}</h3>
                 <h3 *ngIf='!user.currentSession' class="animated flipInX">0:00:00</h3>

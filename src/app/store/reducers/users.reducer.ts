@@ -3,12 +3,13 @@ import { UPDATE_TIME } from '../../components/usersList/allUsers.component';
 import {
     ALL_USERS_FETCHED,
     CHANGE_PAGE,
+    GET_ACTIVE_USERS,
     GET_USER_INFO,
     REGISTER_USER,
-    USER_STARTED,
+    UPDATE_PRICE,
     USER_SEARCH,
+    USER_STARTED,
     USER_STOP,
-    GET_ACTIVE_USERS
 } from '../actions/users.action';
 import { allUsersInitialState, IUsersState } from '../state/users.state';
 import { DESELECT_USER } from './../actions/users.action';
@@ -114,6 +115,24 @@ function getActiveUsers(state, payload) {
     return state;
 }
 
+function updateUserPrice(state: IUsersState, payload) {
+    if (payload) {
+        const users = state.allUsers.map((u: any) => {
+            if (u.id !== payload.id) {
+                return u;
+            }
+
+            return {
+                ...u,
+                price: payload.newPrice
+            }
+        });
+
+        return { ...state, allUsers: users }
+    }
+    return state;
+}
+
 export function usersReducer(state = allUsersInitialState, action) {
     switch (action.type) {
         case ALL_USERS_FETCHED:
@@ -136,6 +155,8 @@ export function usersReducer(state = allUsersInitialState, action) {
             return searchUser(state, action.payload);
         case GET_ACTIVE_USERS:
             return getActiveUsers(state, action.payload);
+        case UPDATE_PRICE:
+            return updateUserPrice(state, action.payload)
         default:
             return state;
     }

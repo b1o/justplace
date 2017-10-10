@@ -1,5 +1,5 @@
 import { NgRedux } from '@angular-redux/store';
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 
 import { UsersAction } from '../../store/actions/users.action';
@@ -10,7 +10,7 @@ import { StopModalComponent } from '../modal/stopModal.component';
 @Component({
     selector: 'list-item',
     templateUrl: 'listItem.component.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 
 export class ListItemComponent implements OnInit {
@@ -19,6 +19,7 @@ export class ListItemComponent implements OnInit {
     @ViewChild(StopModalComponent) stopModal: StopModalComponent;
 
     public startTime;
+    public currentSession;
 
     private subscription: Subscription;
     private time;
@@ -27,7 +28,8 @@ export class ListItemComponent implements OnInit {
 
     constructor(
         private usersAction: UsersAction,
-        private ngRedux: NgRedux<IAppState>
+        private ngRedux: NgRedux<IAppState>,
+        private cd: ChangeDetectorRef
     ) { }
 
     getGameTime(startTime, currentTime) {
@@ -39,25 +41,23 @@ export class ListItemComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.user.currentSession) {
+            this.currentSession = this.user.currentSession
+            console.log(this.currentSession)
+        }
+
         this.subscription = this.ngRedux
             .select(state => state.allUsers.allUsers.filter((u: any) => u.id == this.user.id))
-            .subscribe(state => {
-                console.log(state)
+            .subscribe((state: any) => {
+                if (state.currentSession) {
+                    this.currentSession = state.currentSession
+                    console.log(this.currentSession)
+                }
             })
 
-        // this.subscription = this.ngRedux
-        //     .select(state => state.allUsers)
-        //     .subscribe(data => {
-        //         if (this.user.currentSession) {
-        //             this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime)
-
-        //             this.minutes = (data.currentTime - this.user.currentSession.startTime) / 60000;
-        //             this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
-        //         }
-        //     })
     }
 
     ngOnDestroy() {
-        // this.subscription.unsubscribe()
+        this.subscription.unsubscribe()
     }
 }

@@ -2,8 +2,8 @@ import { NgRedux } from '@angular-redux/store/lib/src/components/ng-redux';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
-import { environment } from '../../../../environments/environment';
 import { TimerService } from '../../../services/timer.service';
+import { UsersAction } from '../../../store/actions/users.action';
 import { IAppState } from '../../../store/index';
 
 @Component({
@@ -12,7 +12,7 @@ import { IAppState } from '../../../store/index';
 })
 
 export class FancyTimerComponent implements OnInit, AfterViewInit {
-
+    @Input() userId;
     @Input() startTime;
 
     public sec = 50;
@@ -41,7 +41,7 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
     public price = '0';
     public timerSub;
 
-    constructor(private cd: ChangeDetectorRef, private ngRedux: NgRedux<IAppState>, private timerService: TimerService) { }
+    constructor(private cd: ChangeDetectorRef, private ngRedux: NgRedux<IAppState>, private timerService: TimerService, private userActions: UsersAction) { }
 
     private scaledValue = (cur) => (100 * cur / 60);
 
@@ -72,7 +72,7 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
             }
             this.calculatePercentages();
 
-            this.price = ((this.minutes / 60) * environment.pricePerHour).toFixed(2);
+            this.userActions.updateUserPrice(this.price, this.userId)
             // this.seconds.update(this.percent)
             this.cd.detectChanges()
         });

@@ -27,7 +27,7 @@
                             <button *ngIf="!currentSession" class="btn-sm btn btn-success" (click)="startModal.open(user)">Старт</button>
                         </div>
                         <hr class="my-1">
-                        <fancy-timer *ngIf="currentSession" [startTime]="currentSession.startTime"></fancy-timer>
+                        <fancy-timer [userId]="user.id" *ngIf="currentSession" [startTime]="currentSession.startTime"></fancy-timer>
                         <small *ngIf="!currentSession" class="text-warning">Няма активна сесия, започни като натиснеш старт</small>
                     </div>
                 </div>

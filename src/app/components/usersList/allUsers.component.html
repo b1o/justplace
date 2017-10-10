@@ -2,7 +2,7 @@
 
 
 <div class="users-container row">
-    <list-item class="col-12 col-md-6" [user]='user' *ngFor="let user of responseUsers"></list-item>
+    <list-item class="col-12 col-md-6" [user]='user' *ngFor="let user of responseUsers; trackBy: trackByFn"></list-item>
 </div>
 
 <pagination></pagination>

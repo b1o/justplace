@@ -6,9 +6,9 @@
 
 
 
-<div class="d-flex justify-content-between">
-    <div class="text-center">
-        <span class="min-chart">
+<div class="row">
+    <div class=" col-12 col-md-4 text-center">
+        <span class=" min-chart">
                             <span class="percent">{{ hours <= 9 ? '0' + hours : hours}}</span>
         <mdb-easy-pie-chart #seconds [percent]="hourPercent" [options]="options"></mdb-easy-pie-chart>
         </span>
@@ -16,7 +16,7 @@
 
     </div>
 
-    <div class="text-center">
+    <div class="col-12 col-md-4 text-center">
         <span class="min-chart">
                             <span class="percent">{{ minutes <= 9 ? '0' + minutes : minutes}}</span>
         <mdb-easy-pie-chart #seconds [percent]="minPercent" [options]="options"></mdb-easy-pie-chart>
@@ -25,7 +25,7 @@
 
     </div>
 
-    <div class="text-center">
+    <div class=" col-12 col-md-4 text-center">
         <span class="min-chart">
                             <span class="percent">{{ sec <= 9 ? '0' + sec : sec}}</span>
         <mdb-easy-pie-chart #seconds [percent]="secPercent" [options]="options"></mdb-easy-pie-chart>
@@ -33,4 +33,8 @@
         <h5><span class="badge green">Секунди</span></h5>
 
     </div>
+</div>
+<div class="row">
+
+    <user-session-price class="text-center col-12" [userId]="userId"></user-session-price>
 </div>

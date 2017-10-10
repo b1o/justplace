@@ -1,5 +1,6 @@
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs/Rx';
 
 import { UsersAction } from '../../store/actions/users.action';
@@ -30,17 +31,18 @@ export class StopModalComponent implements OnInit {
 
     open(user) {
         this.user = user;
+        console.log(user)
         this.id = user.id;
         this.subscription = this.ngRedux
-            .select(state => state.allUsers)
-            .subscribe(data => {
+            .select(state => state.allUsers.allUsers.find((u: any) => u.id === this.id))
+            .subscribe((data: any) => {
+                console.log(data)
                 if (this.user.currentSession) {
-                    this.time = this.getGameTime(this.user.currentSession.startTime, data.currentTime === 0 ? this.user.currentSession.now : data.currentTime);
+                    this.time = this.getGameTime(this.user.currentSession.startTime, moment.now());
                 }
 
-                this.minutes = ((data.currentTime === 0 ? this.user.currentSession.now : data.currentTime) - this.user.currentSession.startTime) / 60000;
-
-                this.price = ((this.minutes / 60) * pricePerHour).toFixed(2);
+                // this.minutes = ((data.currentTime === 0 ? this.user.currentSession.now : data.currentTime) - this.user.currentSession.startTime) / 60000;
+                this.price = data.price //((this.minutes / 60) * pricePerHour).toFixed(2);
             })
         this.stopForm.show();
     }

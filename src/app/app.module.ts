@@ -1,9 +1,8 @@
-import { ActiveUsersComponent } from './components/users/activeUsers/activeUsers.component';
 import 'moment/locale/bg';
 
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { LOCALE_ID, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,9 +23,11 @@ import { ListItemComponent } from './components/listItems/listItem.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartModalComponent } from './components/modal/startModal.component';
 import { StopModalComponent } from './components/modal/stopModal.component';
+import { ActiveUsersComponent } from './components/users/activeUsers/activeUsers.component';
 import { RegisterUserComponent } from './components/users/registerUser/registerUser.component';
 import { UserSessionsHistoryComponent } from './components/users/sessions-history/sessions-history.component';
 import { UserSearchComponent } from './components/users/user-search/user-search.component';
+import { UserSessionPriceComponent } from './components/users/user-session-price/user-session-price.component';
 import { UserProfileComponent } from './components/users/userProfile/userProfile.component';
 import { AllUsersComponent } from './components/usersList/allUsers.component';
 import { config } from './config';
@@ -62,7 +63,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     UserSessionsHistoryComponent,
     UserSearchComponent,
     BasicTimerComponent,
-    ActiveUsersComponent
+    ActiveUsersComponent,
+    UserSessionPriceComponent
   ],
   imports: [
     NgReduxModule,
@@ -89,7 +91,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     UsersAction,
     UsersService,
     LayoutActions,
-    TimerService
+    TimerService,
+    { provide: LOCALE_ID, useValue: 'bg-Bg' }
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
