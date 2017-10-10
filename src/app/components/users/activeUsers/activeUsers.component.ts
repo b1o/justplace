@@ -1,8 +1,9 @@
-import { Subscription } from 'rxjs/Rx';
-import { IAppState } from '../../../store/index';
 import { NgRedux } from '@angular-redux/store';
-import { UsersAction } from '../../../store/actions/users.action';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+
+import { UsersAction } from '../../../store/actions/users.action';
+import { IAppState } from '../../../store/index';
 
 @Component({
     selector: 'active-users',
@@ -26,6 +27,10 @@ export class ActiveUsersComponent implements OnInit {
             .subscribe(data => {
                 this.responseUsers = data.allUsers;
             })
+    }
+
+    trackByFn(index, element) {
+        return element.id;
     }
 
     ngOnDestroy() {
