@@ -10,7 +10,7 @@ import { UsersAction } from '../../../store/actions/users.action';
 
 export class UserSearchComponent implements OnInit {
 
-    public term: Subject<string> = new Subject<string>();
+    public term: Subject<any> = new Subject<any>();
 
     constructor(private usersActions: UsersAction) {
         this.term

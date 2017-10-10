@@ -18,11 +18,11 @@ export class StopModalComponent implements OnInit {
 
     @ViewChild('form') stopForm: ModalDirective;
     private subscription: Subscription;
-    private user;
-    private time;
-    private minutes = 0;
-    private price = '0';
-    private id;
+    public user;
+    public time;
+    public minutes = 0;
+    public price = '0';
+    public id;
 
     constructor(
         private usersAction: UsersAction,

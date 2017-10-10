@@ -12,11 +12,11 @@ export const UPDATE_TIME = 'timer/UPDATE';
     templateUrl: 'allUsers.component.html',
 })
 export class AllUsersComponent {
-    private responseUsers;
-    private currentTime;
+    public responseUsers;
+    public currentTime;
     private timerSubscription: Subscription;
     private allUserSubscription: Subscription;
-    private response;
+    public response;
 
     constructor(
         private usrsAction: UsersAction,

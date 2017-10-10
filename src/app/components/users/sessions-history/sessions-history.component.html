@@ -1,6 +1,22 @@
 <h1 class="card-title">История на посещенията</h1>
 <div class="sessions">
-    <div *ngFor="let session of sessions">
-        <p *ngIf="session.endTime">{{session.startTime | date:'short'}} - {{session.endTime | date:'short'}}</p>
-    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Време на започване</th>
+                <th>Време на спиране</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let session of sessions; let i = index">
+
+                <th scope="row">{{i+1}}</th>
+                <td>{{session.startTime | date:'short'}}</td>
+                <td>{{session.endTime | date:'short'}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+
 </div>

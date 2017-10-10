@@ -21,10 +21,10 @@ export class PhotoCaptureComponent implements OnInit, OnDestroy {
 
     private width = 640;
     private height = 480;
-    private streaming = false;
+    public streaming = false;
     private stream;
     private photoBlob: Blob;
-    private uploadedImage;
+    public uploadedImage;
 
     public hasCamera = false;
     public loading = false;

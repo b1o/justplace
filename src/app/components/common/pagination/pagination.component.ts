@@ -1,8 +1,9 @@
-import { UsersAction } from '../../../store/actions/users.action';
-import { Subscription } from 'rxjs/Rx';
-import { IAppState } from '../../../store/index';
 import { NgRedux } from '@angular-redux/store';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+
+import { UsersAction } from '../../../store/actions/users.action';
+import { IAppState } from '../../../store/index';
 
 @Component({
     selector: 'pagination',
@@ -10,11 +11,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class PaginationComponent implements OnInit {
-    private response;
-    private allPages;
-    private totalPages;
-    private currentPage;
-    private subscription: Subscription;
+    public response;
+    public allPages;
+    public totalPages;
+    public currentPage;
+    public subscription: Subscription;
 
     constructor(
         private ngRedux: NgRedux<IAppState>,
@@ -27,7 +28,7 @@ export class PaginationComponent implements OnInit {
             .changePage(url)
     }
 
-    ngOnInit() { 
+    ngOnInit() {
         this.subscription = this.ngRedux
             .select(state => state.allUsers)
             .subscribe(data => {
@@ -36,7 +37,7 @@ export class PaginationComponent implements OnInit {
                 this.totalPages = data.totalPages;
                 this.currentPage = data.currentPage;
             })
-        
+
     }
 
     ngOnDestroy() {

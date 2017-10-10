@@ -1,8 +1,8 @@
-import { Subscription } from 'rxjs/Rx';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IAppState } from 'app/store';
+import { Subscription } from 'rxjs/Rx';
 
 import { AuthService } from '../../services/auth.service';
 import { LoginActions } from '../../store/actions/login.actions';
@@ -15,7 +15,7 @@ import { LoginModel } from './login.model';
 
 export class LoginComponent implements OnInit {
 
-    private user: LoginModel = new LoginModel()
+    public user: LoginModel = new LoginModel()
     private subscription: Subscription;
 
     constructor(

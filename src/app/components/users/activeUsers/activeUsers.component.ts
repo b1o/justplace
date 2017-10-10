@@ -11,8 +11,8 @@ import { IAppState } from '../../../store/index';
 })
 
 export class ActiveUsersComponent implements OnInit {
-    private responseUsers;
-    private currentTime;
+    public responseUsers;
+    public currentTime;
     private allUserSubscription: Subscription;
 
     constructor(

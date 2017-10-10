@@ -14,9 +14,9 @@ export class StartModalComponent {
     @ViewChild('form') startForm: ModalDirective
 
     private id;
-    private userCount = 1;
-    private description = '';
-    private user;
+    public userCount = 1;
+    public description = '';
+    public user;
 
     constructor(
         private toastService: ToastService,
