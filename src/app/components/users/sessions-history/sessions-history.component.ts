@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,5 +11,11 @@ export class UserSessionsHistoryComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log(this.sessions)
+        this.sessions = this.sessions.filter(s => s.endTime != null).map(s => {
+            let duration = moment.duration(s.endTime - s.startTime).format('hh:mm:ss', {trim: false})
+            return { ...s, duration: duration }
+        })
+    }
 }

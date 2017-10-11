@@ -5,7 +5,7 @@
                 <div class="card-body col-12 col-md-5">
                     <div class="form-header info-color accent-1 mb-3">
                         Информация за потребителя
-
+                        <edit-user [user]="user"></edit-user>
                     </div>
                     <div class="user-info p-1 d-flex align-items-center">
                         <div class="circle-avatar pt-0 z-depth-1 mr-1" [ngStyle]="{'background-image': user.pictureName ? ('url(' + user.pictureName + ')') : 'url(/assets/user.ico)'}">

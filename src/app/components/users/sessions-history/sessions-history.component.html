@@ -6,6 +6,9 @@
                 <th>#</th>
                 <th>Време на започване</th>
                 <th>Време на спиране</th>
+                <th>Време</th>
+                <th>Цена</th>
+                <th>Платено</th>
             </tr>
         </thead>
         <tbody>
@@ -14,6 +17,7 @@
                 <th scope="row">{{i+1}}</th>
                 <td>{{session.startTime | date:'short'}}</td>
                 <td>{{session.endTime | date:'short'}}</td>
+                <td>{{session.duration}}</td>
 
             </tr>
         </tbody>

@@ -1,3 +1,4 @@
+import { EditUserComponent } from './components/users/editUser/editUser.component';
 import 'moment/locale/bg';
 
 import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
@@ -64,7 +65,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     UserSearchComponent,
     BasicTimerComponent,
     ActiveUsersComponent,
-    UserSessionPriceComponent
+    UserSessionPriceComponent,
+    EditUserComponent
   ],
   imports: [
     NgReduxModule,
