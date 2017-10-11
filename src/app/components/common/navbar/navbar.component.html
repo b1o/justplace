@@ -1,15 +1,5 @@
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-md scrolling-navbar double-nav" [containerInside]="false">
-    <!-- SideNav slide-out button -->
-    <div class="float-xs-left">
-        <a (click)="toggleSidenav()" class="button-collapse"><i class="fa fa-bars"></i></a>
-    </div>
-    <!--/. SideNav slide-out button -->
-
-    <!-- Breadcrumb-->
-    <div class="breadcrumb-dn mr-auto">
-        <p>Just Place</p>
-    </div>
-    <!--/. Breadcrumb-->
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg double-nav" [containerInside]="false">
+    <a class="navbar-brand"><img src="/assets/logo.png" height="40"></a>
 
 
     <ul *ngIf="isLoggedIn" class="nav navbar-nav nav-flex-icons ml-auto">
@@ -17,13 +7,13 @@
             <a class="nav-link waves-light" routerLink="/users/new" mdbRippleRadius><i class="fa fa-plus text-success"></i> <span class="clearfix d-none d-sm-inline-block">Регистрирай потребител</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link waves-light " routerLink="/users/active" mdbRippleRadius><i class="fa fa-users text-success"></i> <span class="clearfix d-none d-sm-inline-block">Активни потребители</span></a>
-        <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link waves-light" routerLink="/users" mdbRippleRadius><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">Потребители</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">Изход</span></a>
-        </li>
+            <!-- <a class="nav-link waves-light " routerLink="/users/active" mdbRippleRadius><i class="fa fa-users text-success"></i> <span class="clearfix d-none d-sm-inline-block">Активни потребители</span></a> -->
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link waves-light" routerLink="/users" mdbRippleRadius><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">Потребители</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">Изход</span></a>
+            </li>
 
     </ul>
 
@@ -34,5 +24,6 @@
         </li>
 
     </ul>
+
 
 </mdb-navbar>
