@@ -47,27 +47,17 @@ export class FancyTimerComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
 
-        const start = moment.duration((moment.now() - this.startTime), 'milliseconds')
-        this.hours = Number(start.hours());
-
-        this.minutes = start.minutes();
-        this.sec = start.seconds()
+        
         this.calculatePercentages()
 
         this.timerSub = this.timerService.getTimer().subscribe(tick => {
-            this.sec++;
+            const start = moment.duration((this.ngRedux.getState().allUsers.currentTime - this.startTime), 'milliseconds')
 
-            if (this.sec >= 60) {
-                this.minutes++;
-                this.sec = 0;
-            }
+            this.hours = Number(start.hours());
+    
+            this.minutes = start.minutes();
+            this.sec = start.seconds()
 
-            if (this.minutes >= 60) {
-
-                this.hours = this.hours + 1;
-                this.minutes = 0;
-
-            }
             this.calculatePercentages();
 
             this.userActions.updateUserPrice(this.price, this.userId)

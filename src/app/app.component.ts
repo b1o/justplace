@@ -1,3 +1,8 @@
+import { UPDATE_TIME } from './components/usersList/allUsers.component';
+import { Observable } from 'rxjs/Rx';
+import { IAppState } from './store/index';
+import { NgRedux } from '@angular-redux/store';
+import { UsersAction } from './store/actions/users.action';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,8 +13,26 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
+  private timerSubscription;
+  constructor(
+    private usersAction: UsersAction,
+    private ngRedux: NgRedux<IAppState>
+  ) { }
 
-  constructor() {}
+  updateCurrentTime() {
+    let timer = Observable.timer(0, 1000);
+    this.timerSubscription = timer.subscribe(t => this.ngRedux.dispatch({ type: UPDATE_TIME }));      
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.usersAction.getAllUsers('users');
+
+    this.updateCurrentTime()
+  }
+
+  ngOnDestroy() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
 }
