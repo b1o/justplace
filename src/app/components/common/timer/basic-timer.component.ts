@@ -14,6 +14,7 @@ import { UsersAction } from '../../../store/actions/users.action';
 export class BasicTimerComponent implements OnInit, OnDestroy {
     @Input() session;
     @Input() userId;
+    @Input() showPrice = true;
 
     public time;
     public sec = 0;

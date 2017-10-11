@@ -1,7 +1,7 @@
 <div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
         <!--Content-->
-        <div class="modal-content">
+        <div *ngIf="user" class="modal-content">
 
             <!--Header-->
             <div class="modal-header blue-gradient white-text">
@@ -20,28 +20,28 @@
                             <p class="text-center"><i class="fa fa-comment fa-2x"></i></p>
                         </div>
 
-                        <div class="col-9">
-                            <p *ngIf="user">{{user.currentSession.description}}</p>
+                        <div class="col-9 wow animated flipInX" data-wow-delay="0s">
+                            <h3 *ngIf="user">{{user.currentSession.description}}</h3>
                         </div>
                     </div>
                     <hr class="mt-0">
                     <div class="row">
                         <div class="col-3">
-                            <p class="text-center"><i class="fa fa-child fa-2x"></i></p>
+                            <h3 class="text-center"><i class="fa fa-child fa-2x"></i></h3>
                         </div>
 
-                        <div class="col-9">
-                            <p *ngIf="user">{{user.currentSession.userCount}}</p>
+                        <div class="col-9 wow animated flipInX" data-wow-delay="0.1s">
+                            <h3 *ngIf="user">{{user.currentSession.userCount}}</h3>
                         </div>
                     </div>
                     <hr class="mt-0">
                     <div class="row">
                         <div class="col-3">
-                            <p class="text-center"><i class="fa fa-clock-o fa-2x"></i></p>
+                            <h3 class="text-center"><i class="fa fa-clock-o fa-2x"></i></h3>
                         </div>
 
-                        <div class="col-9">
-                            <p>{{time}}</p>
+                        <div class="col-9 wow animated flipInX" data-wow-delay="0.2s">
+                            <basic-timer [userId]="id" *ngIf="user.currentSession" [session]="user.currentSession" [showPrice]="false"></basic-timer>
                         </div>
                     </div>
                     <hr class="mt-0">
@@ -50,8 +50,8 @@
                             <p class="text-center"><i class="fa fa-dollar fa-2x"></i></p>
                         </div>
 
-                        <div class="col-9">
-                            <p>{{price}} лв</p>
+                        <div class="col-9 wow animated flipInX" data-wow-delay="0.3s">
+                            <h3 class="">{{price}} лв</h3>
                         </div>
                     </div>
                 </div>
