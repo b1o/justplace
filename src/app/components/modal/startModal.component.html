@@ -1,4 +1,5 @@
-<div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" (onHide)="onHide()">
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" (onHide)="onHide()">
     <div class="modal-dialog cascading-modal" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -24,8 +25,11 @@
                     <i class="fa fa-child prefix"></i>
                     <input mdbActive type="number" min='1' id="form27" class="form-control" [(ngModel)]="userCount">
                     <label for="form27">Брой играчи</label>
-                    <a (click)=plus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-plus"></i></a>
-                    <a (click)=minus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-minus"></i></a>
+                    <div>
+                        <a (click)=plus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-plus"></i></a>
+                        <a (click)=minus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-minus"></i></a>
+                        <a (click)=minus() class="btn btn-info btn-sm btn-rounded blue-gradient waves-light float-right" mdbRippleRadius>Промо цена</a>
+                    </div>
                 </div>
 
                 <div class="text-center mt-1-half">

@@ -41,8 +41,9 @@ export class UsersAction {
     updateUserPrice(newPrice, id) {
         const user: any = this.ngRedux.getState().allUsers.allUsers.find((u: any) => u.id === id);
         if (user.currentSession) {
+            const users = user.currentSession.userCount;
             const minutes = moment.duration(moment.now() - user.currentSession.startTime).asMinutes()
-            const price = ((minutes / 60) * environment.pricePerHour).toFixed(2);
+            const price = ((minutes / 60) * environment.pricePerHour * users).toFixed(2);
             this.ngRedux.dispatch<IAction>({ type: UPDATE_PRICE, payload: { newPrice: price, id } })
         }
 

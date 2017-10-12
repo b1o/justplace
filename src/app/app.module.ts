@@ -1,3 +1,5 @@
+import { SettingsActions } from './store/actions/settings.actions';
+import { SettingsComponent } from './components/common/settings/settings.component';
 import { EditUserComponent } from './components/users/editUser/editUser.component';
 import 'moment/locale/bg';
 
@@ -66,7 +68,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     BasicTimerComponent,
     ActiveUsersComponent,
     UserSessionPriceComponent,
-    EditUserComponent
+    EditUserComponent,
+    SettingsComponent
   ],
   imports: [
     NgReduxModule,
@@ -93,6 +96,7 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     UsersAction,
     UsersService,
     LayoutActions,
+    SettingsActions,
     TimerService,
     { provide: LOCALE_ID, useValue: 'bg-Bg' }
   ],

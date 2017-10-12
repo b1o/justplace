@@ -1,0 +1,16 @@
+<div>
+    <form class="w-50">
+        <p class="h5 text-center mb-4">Настройка на цената</p>
+
+        <div class="md-form">
+            <i class="fa fa-dollar prefix grey-text"></i>
+            <input type="text" id="form3" name="price" class="form-control" mdbActive [(ngModel)]="price">
+            <label for="form3">Цена</label>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-indigo waves-light" (click)="saveSettings()" mdbRippleRadius>Запази</button>
+        </div>
+
+    </form>
+</div>
