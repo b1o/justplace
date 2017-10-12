@@ -1,43 +1,47 @@
 <div *ngIf="user">
-<i class="fa fa-edit text-warning" style="cursor:pointer" mdbTooltip="Редактирай профила" (click)="form.show()"></i>
+    <i class="fa fa-edit text-warning" style="cursor:pointer" mdbTooltip="Редактирай профила" (click)="form.show()"></i>
 
-<div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" (onHide)="onHide()">
-    <div class="modal-dialog cascading-modal" role="document">
-        <!--Content-->
-        <div class="modal-content">
+    <div mdbModal #form="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" (onHide)="onHide()">
+        <div class="modal-dialog cascading-modal modal-lg" role="document">
+            <!--Content-->
+            <div class="modal-content">
 
-            <!--Header-->
-            <div class="modal-header blue-gradient darken-3 white-text">
-                <h4 class="title"><i class="fa fa-newspaper-o"></i> Стартиране на игра</h4>
-                <h4 class="title" *ngIf='user'>Потребител: {{user.name}} {{user.lastName}}</h4>
-                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                <!--Header-->
+                <div class="modal-header blue-gradient darken-3 white-text" style="margin-bottom: 1rem;">
+                    <h2 class="h2-responsive mb-2">Редактиране на профила</h2>
+
+                </div>
+
+                <!--Body-->
+                <div class="row p-4">
+                    <div class="col-12 col-md-6 photo">
+                        <app-photo-capture (photoTaken)="onPhotoTaken($event)"></app-photo-capture>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="md-form">
+                            <input name="name" type="text" [(ngModel)]="user.name" id="firstName" class="form-control" mdbActive>
+                            <label for="firstName">Име</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input name="lastName" type="text" [(ngModel)]="user.lastName" id="lastName" class="form-control" mdbActive>
+                            <label for="lastName">Фамилия</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input name="email" type="email" [(ngModel)]="user.email" id="email" class="form-control" mdbActive>
+                            <label for="email">И-мейл</label>
+                        </div>
+                        <hr>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-info" mdbRippleRadius>Запази промените</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--Body-->
-            <div class="modal-body mb-0">
-
-                <div class="md-form form-sm">
-                    <i class="fa fa-comment prefix"></i>
-                    <input mdbActive type="text" id="form28" class="form-control" [(ngModel)]="description">
-                    <label for="form28">Описание</label>
-                </div>
-
-                <div class="md-form form-sm">
-                    <i class="fa fa-child prefix"></i>
-                    <input mdbActive type="number" min='1' id="form27" class="form-control" [(ngModel)]="userCount">
-                    <label for="form27">Брой играчи</label>
-                    <a (click)=plus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-plus"></i></a>
-                    <a (click)=minus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-minus"></i></a>
-                </div>
-
-                <div class="text-center mt-1-half">
-                    <button class="btn btn-info mb-1 blue-gradient waves-light" mdbRippleRadius (click)="start()">Старт <i class="fa fa-check ml-1"></i></button>
-                </div>
-
-            </div>
+            <!--/.Content-->
         </div>
-        <!--/.Content-->
     </div>
-</div>
 </div>
