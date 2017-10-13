@@ -50,6 +50,7 @@ export class ListItemComponent implements OnInit {
             .subscribe((state: any) => {
                 if (state.currentSession) {
                     this.currentSession = state.currentSession
+                    // this.currentSession.startTime = new Date(this.currentSession.startTime0)
                 }
             })
 

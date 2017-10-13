@@ -20,7 +20,7 @@ function getAllUsers(state, action) {
     if (result.obj) {
         for (let u of result.obj.object) {
             if (u.currentSession) {
-                u['price'] = '0';
+                u['price'] = u.currentSession.pricePerHour;
             }
         }
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -12,8 +13,11 @@ import { ToastService } from '../typescripts/pro/alerts/index';
 @Injectable()
 export class NetworkService {
 
-    constructor(private http: Http,
-        private toastService: ToastService) { }
+    constructor(
+        private http: Http,
+        private toastService: ToastService,
+        private router: Router
+    ) { }
 
     get(url, authenticated = false) {
         const options = { withCredentials: true };
@@ -24,6 +28,11 @@ export class NetworkService {
                 console.error(err)
 
                 if (err.obj) {
+                    // if (err.obj === "You are not logged!") {
+                    //     this.router.navigate(['/login']);
+                    // } else {
+                    //     this.toastService.error(err.obj);
+                    // }
                     this.toastService.error(err.obj);
                 } else {
                     this.toastService.error("Нещо се обърка!");

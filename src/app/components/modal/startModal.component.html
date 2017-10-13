@@ -28,7 +28,14 @@
                     <div>
                         <a (click)=plus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-plus"></i></a>
                         <a (click)=minus() class="btn-floating btn-sm blue-gradient waves-light" mdbRippleRadius><i class="fa fa-minus"></i></a>
-                        <a (click)=minus() class="btn btn-info btn-sm btn-rounded blue-gradient waves-light float-right" mdbRippleRadius>Промо цена</a>
+                        <div class="btn-group float-right" dropdown>
+                            <button dropdownToggle class="btn btn-info blue-gradient btn-sm dropdown-toggle waves-light" style="margin-top: 12px" type="button" mdbRippleRadius>
+                                Отстъпка - {{currentDiscount}}% 
+                            </button>
+                            <div class="dropdown-menu">
+                                <a *ngFor="let discount of discounts" (click)="getDiscount(discount)" class="dropdown-item">{{discount}} %</a>
+                            </div>
+                        </div>   
                     </div>
                 </div>
 

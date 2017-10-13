@@ -8,6 +8,8 @@ import { UserModel } from '../../../models/users/user.model';
 import { UsersService } from '../../services/users.service';
 import { IAction, IAppState } from '../app.state';
 
+import { GET_PRICE_PER_HOUR } from './settings.actions';
+
 export const ALL_USERS_FETCHED = 'users/GET_ALL';
 export const USER_STARTED = 'timer/START';
 export const USER_STOP = 'timer/STOP';
@@ -41,9 +43,11 @@ export class UsersAction {
     updateUserPrice(newPrice, id) {
         const user: any = this.ngRedux.getState().allUsers.allUsers.find((u: any) => u.id === id);
         if (user.currentSession) {
+            const pricePerHour = user.currentSession.pricePerHour;
             const users = user.currentSession.userCount;
-            const minutes = moment.duration(moment.now() - user.currentSession.startTime).asMinutes()
-            const price = ((minutes / 60) * environment.pricePerHour * users).toFixed(2);
+            const minutes = moment.duration(this.ngRedux.getState().allUsers.currentTime - user.currentSession.startTime).asMinutes()
+            console.log(minutes)
+            const price = ((minutes / 60) * pricePerHour * users).toFixed(2);
             this.ngRedux.dispatch<IAction>({ type: UPDATE_PRICE, payload: { newPrice: price, id } })
         }
 
@@ -60,7 +64,7 @@ export class UsersAction {
                 this.ngRedux.dispatch({
                     type: ALL_USERS_FETCHED,
                     result
-                })
+                });
             })
     }
 

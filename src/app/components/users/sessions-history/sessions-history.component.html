@@ -14,11 +14,12 @@
         <tbody>
             <tr *ngFor="let session of sessions; let i = index">
 
-                <th scope="row">{{i+1}}</th>
-                <td>{{session.startTime | date:'short'}}</td>
-                <td>{{session.endTime | date:'short'}}</td>
-                <td>{{session.duration}}</td>
-
+                <th class="align-middle" scope="row">{{i+1}}</th>
+                <td class="align-middle">{{session.startTime | date:'short'}}</td>
+                <td class="align-middle">{{session.endTime | date:'short'}}</td>
+                <td class="align-middle">{{session.duration}}</td>
+                <td class="align-middle">-</td>
+                <td><button type="button" class="btn btn-sm btn-cyan waves-light m-0" mdbRippleRadius>Плати</button></td>
             </tr>
         </tbody>
     </table>

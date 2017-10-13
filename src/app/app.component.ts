@@ -1,3 +1,4 @@
+import { SettingsActions } from './store/actions/settings.actions';
 import { UPDATE_TIME } from './components/usersList/allUsers.component';
 import { Observable } from 'rxjs/Rx';
 import { IAppState } from './store/index';
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   private timerSubscription;
   constructor(
     private usersAction: UsersAction,
+    private settingsActions: SettingsActions,
     private ngRedux: NgRedux<IAppState>
   ) { }
 
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.usersAction.getAllUsers('users');
+    this.settingsActions.getPrice();
 
     this.updateCurrentTime()
   }

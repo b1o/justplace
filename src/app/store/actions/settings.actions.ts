@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { IAppState } from '../app.state';
 
 export const SAVE_SETTINGS = 'settings/SAVE';
+export const GET_PRICE_PER_HOUR = 'settings/GET_PRICE'
 
 @Injectable()
 export class SettingsActions {
@@ -13,9 +14,8 @@ export class SettingsActions {
         private networkService: NetworkService
     ) { }
 
-    saveSettings() {
-        let url="";
-        let data="";
+    saveSettings(data) {
+        let url="/pricePerHour";
 
         this.networkService
             .post(url, data)
@@ -25,5 +25,18 @@ export class SettingsActions {
                     payload: res
                 })
             });
+    }
+
+    getPrice() {
+        let url="/pricePerHour";
+
+        this.networkService
+            .get(url)
+            .subscribe(res => {
+                this.ngRedux.dispatch({
+                    type: GET_PRICE_PER_HOUR,
+                    payload: res
+                })
+            })
     }
 }

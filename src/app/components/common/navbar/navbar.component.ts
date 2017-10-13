@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
     public isLoggedIn = false;
     private sidenavOpened = false;
     private subscription: Subscription;
+    private priceSubscription: Subscription;
+    public price;
 
     constructor(
         private ngRedux: NgRedux<IAppState>,
@@ -42,9 +44,12 @@ export class NavbarComponent implements OnInit {
                     this.isLoggedIn = false;
                 }
             })
+
+        this.priceSubscription = this.ngRedux.select(state => state.settings).subscribe(res => {this.price = res.price});
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe()
+        this.subscription.unsubscribe();
+        this.priceSubscription.unsubscribe();
     }
 }
