@@ -19,6 +19,7 @@ export const DESELECT_USER = 'users/deselect_current';
 export const USER_SEARCH = 'users/search';
 export const UPDATE_PRICE = 'users/update_price';
 export const GET_ACTIVE_USERS = 'users/active';
+export const SESSION_PAID = 'session/PAID';
 
 export const CHANGE_PAGE = '[LAYOUT] previous page';
 
@@ -46,7 +47,6 @@ export class UsersAction {
             const pricePerHour = user.currentSession.pricePerHour;
             const users = user.currentSession.userCount;
             const minutes = moment.duration(this.ngRedux.getState().allUsers.currentTime - user.currentSession.startTime).asMinutes()
-            console.log(minutes)
             const price = ((minutes / 60) * pricePerHour * users).toFixed(2);
             this.ngRedux.dispatch<IAction>({ type: UPDATE_PRICE, payload: { newPrice: price, id } })
         }
@@ -121,6 +121,17 @@ export class UsersAction {
                 });
                 // ????????
                 this.getUserInfo(id);
+            })
+    }
+
+    pay(userId, sessionId) {
+        this.usersService
+            .pay(userId, sessionId)
+            .subscribe(result => {
+                this.ngRedux.dispatch({
+                    type: SESSION_PAID,
+                    payload: result
+                })
             })
     }
 

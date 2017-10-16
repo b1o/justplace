@@ -1,3 +1,4 @@
+import { PaymentModalComponent } from '../modal/paymentModal.component';
 import { NgRedux } from '@angular-redux/store';
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
@@ -17,12 +18,12 @@ export class ListItemComponent implements OnInit {
     @Input() user;
     @ViewChild(StartModalComponent) startModal: StartModalComponent;
     @ViewChild(StopModalComponent) stopModal: StopModalComponent;
+    @ViewChild(PaymentModalComponent) paymentModal: PaymentModalComponent;
 
     public startTime;
     public currentSession;
 
     private subscription: Subscription;
-    private time;
     private price = '0';
     private minutes = 0;
 

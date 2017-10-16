@@ -28,12 +28,12 @@ export class NetworkService {
                 console.error(err)
 
                 if (err.obj) {
-                    // if (err.obj === "You are not logged!") {
-                    //     this.router.navigate(['/login']);
-                    // } else {
-                    //     this.toastService.error(err.obj);
-                    // }
-                    this.toastService.error(err.obj);
+                    if (err.obj === "You are not logged!") {
+                        this.router.navigate(['/login']);
+                        window.localStorage.clear();
+                    } else {
+                        this.toastService.error(err.obj);
+                    }
                 } else {
                     this.toastService.error("Нещо се обърка!");
                 }

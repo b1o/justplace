@@ -1,17 +1,3 @@
-<!-- <th class="p-2 align-middle" scope="row">
-    1</th>
-<td class="p-2 align-middle">{{user.name}}</td>
-<td class="p-2 align-middle">{{user.email}}</td>
-<td class="p-2 align-middle">{{time}}</td>
-<td class="p-2 align-middle">
-    <button *ngIf="!user.currentSession" class="btn btn-sm blue-gradient btn-rounded waves-light" mdbRippleRadius (click)="startModal.open(user.id)">
-        Старт
-    </button>
-    <button *ngIf="user.currentSession" class="btn btn-sm peach-gradient btn-rounded waves-light" mdbRippleRadius (click)="stop(user.id)">
-        Стоп
-    </button>
-</td> -->
-
 <div routerLink="/users/{{user.id}}" style="background-color: white" class="media mb-1 border p-2 z-depth-1">
     <a class="media-left waves-light circle-avatar z-depth-1 mr-1" [ngStyle]="{'background-image': user.pictureName ? ('url(' + user.pictureName + ')') : 'url(/assets/user.ico)'}">
         <!-- <img class="rounded-circle img-fluid" src="{{user.pictureName}}" alt="No Image"> -->
@@ -22,7 +8,7 @@
             <button *ngIf="!user.currentSession" class="btn btn-sm blue-gradient btn-rounded waves-light d-inline-block" mdbRippleRadius (click)="startModal.open(user)">
                 <i class="fa fa-play" aria-hidden="true"></i>
             </button>
-            <button *ngIf="user.currentSession" class="btn btn-sm peach-gradient btn-rounded waves-light d-inline-block" mdbRippleRadius (click)="stopModal.open(user, time)">
+            <button *ngIf="user.currentSession" class="btn btn-sm peach-gradient btn-rounded waves-light d-inline-block" mdbRippleRadius (click)="stopModal.open(user)">
                 <i class="fa fa-stop" aria-hidden="true"></i>
             </button>
         </div>

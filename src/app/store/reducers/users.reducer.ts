@@ -10,6 +10,7 @@ import {
     USER_SEARCH,
     USER_STARTED,
     USER_STOP,
+    SESSION_PAID
 } from '../actions/users.action';
 import { allUsersInitialState, IUsersState } from '../state/users.state';
 import { DESELECT_USER } from './../actions/users.action';
@@ -132,6 +133,26 @@ function updateUserPrice(state: IUsersState, payload) {
     return state;
 }
 
+function sessionPaid(state, payload) {
+    let result = payload.obj;
+    if (result) {
+        const sessions = state.selectedUser.sessions.map((s) => {
+            if (s.id === result.id) {
+                return { ...s, paid: result.paid }                
+            }
+
+            return { ...s }
+        });
+
+        let selectedUser = state.selectedUser;
+        selectedUser = { ...selectedUser, sessions: sessions };
+
+        return { ...state, selectedUser: selectedUser }
+    }
+
+    return state;
+}
+
 export function usersReducer(state = allUsersInitialState, action) {
     switch (action.type) {
         case ALL_USERS_FETCHED:
@@ -155,7 +176,9 @@ export function usersReducer(state = allUsersInitialState, action) {
         case GET_ACTIVE_USERS:
             return getActiveUsers(state, action.payload);
         case UPDATE_PRICE:
-            return updateUserPrice(state, action.payload)
+            return updateUserPrice(state, action.payload);
+        case SESSION_PAID: 
+            return sessionPaid(state, action.payload);
         default:
             return state;
     }

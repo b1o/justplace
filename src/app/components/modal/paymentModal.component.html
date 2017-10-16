@@ -1,0 +1,27 @@
+<div mdbModal #paymentForm="mdb-modal" class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div *ngIf="session">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="heading lead">Плащане на: {{user.name}} {{user.lastName}}</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="paymentForm.hide()">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h3><i class="fa fa-child"></i> {{session.userCount}}</h3>
+                        <h3><i class="fa fa-clock-o"></i> {{session.duration}}</h3>
+                        <h3><i class="fa fa-dollar"></i> {{session.price}}</h3>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-primary-modal waves-light" mdbRippleRadius (click)="pay(user.id, session.id)">Плати</a>
+                    <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="paymentForm.hide()" mdbRippleRadius>Не сега</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

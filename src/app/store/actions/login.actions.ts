@@ -32,6 +32,7 @@ export class LoginActions {
         this.authService
             .logout()
             .subscribe(result => {
+                this.authService.removeUser();
                 this.ngRedux.dispatch({
                     type: USER_LOGOUT,
                     result

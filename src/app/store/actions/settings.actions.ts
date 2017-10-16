@@ -15,7 +15,7 @@ export class SettingsActions {
     ) { }
 
     saveSettings(data) {
-        let url="/pricePerHour";
+        let url="pricePerHour";
 
         this.networkService
             .post(url, data)
@@ -28,7 +28,7 @@ export class SettingsActions {
     }
 
     getPrice() {
-        let url="/pricePerHour";
+        let url="pricePerHour";
 
         this.networkService
             .get(url)

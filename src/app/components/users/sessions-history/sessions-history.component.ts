@@ -1,5 +1,6 @@
+import { PaymentModalComponent } from '../../modal/paymentModal.component';
 import * as moment from 'moment';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'user-sessions-history',
@@ -7,7 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class UserSessionsHistoryComponent implements OnInit {
+    @Input() user;
     @Input() sessions;
+    @ViewChild(PaymentModalComponent) paymentModal: PaymentModalComponent;
 
     constructor() { }
 
@@ -15,7 +18,15 @@ export class UserSessionsHistoryComponent implements OnInit {
         console.log(this.sessions)
         this.sessions = this.sessions.filter(s => s.endTime != null).map(s => {
             let duration = moment.duration(s.endTime - s.startTime).format('hh:mm:ss', {trim: false})
-            return { ...s, duration: duration }
+            let timeInHours = ((s.endTime - s.startTime) / 1000) / 3600;
+            let price = (timeInHours*s.pricePerHour*s.userCount).toFixed(2);
+            return { ...s, duration: duration, price: price }
         })
+    }
+
+    ngOnChange(changes: SimpleChanges) {
+        if(changes.sessions) {
+            console.log('somting')
+        }
     }
 }

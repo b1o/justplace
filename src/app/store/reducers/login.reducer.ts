@@ -21,7 +21,6 @@ function userLogin(state, action) {
 }
 
 function userLogout(state, action) {
-    window.localStorage.removeItem('user');
     return Object.assign({}, state, {
         userAuthenticated: false,
         obj: false,

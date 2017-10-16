@@ -53,6 +53,13 @@ export class UsersService {
             .post(url, {})
     }
 
+    pay(userId, sessionId) {
+        let url = `users/${userId}/sessions/${sessionId}/pay`;
+
+        return this.networkService
+            .post(url, {})
+    }
+
     registerUser(user: UserModel) {
         const url = 'users/new';
 

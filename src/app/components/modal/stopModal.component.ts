@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
@@ -21,9 +22,11 @@ export class StopModalComponent implements OnInit {
     public price = '0';
     public id;
 
+
     constructor(
         private usersAction: UsersAction,
-        private ngRedux: NgRedux<IAppState>
+        private ngRedux: NgRedux<IAppState>,
+        private router: Router
     ) { }
 
     open(user) {
@@ -41,6 +44,7 @@ export class StopModalComponent implements OnInit {
         this.subscription.unsubscribe()
         this.usersAction.stop(this.id);
         this.stopForm.hide();
+        this.router.navigate([`/users/${this.id}`])
     }
 
     ngOnInit() {

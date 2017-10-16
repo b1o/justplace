@@ -18,10 +18,13 @@
                 <td class="align-middle">{{session.startTime | date:'short'}}</td>
                 <td class="align-middle">{{session.endTime | date:'short'}}</td>
                 <td class="align-middle">{{session.duration}}</td>
-                <td class="align-middle">-</td>
-                <td><button type="button" class="btn btn-sm btn-cyan waves-light m-0" mdbRippleRadius>Плати</button></td>
+                <td class="align-middle">{{session.price}}</td>
+                <td *ngIf="session.paid" class="align-middle">Платено</td>
+                <td *ngIf="!session.paid"><button type="button" class="btn btn-sm btn-cyan waves-light m-0" mdbRippleRadius (click)="paymentModal.open(user, session)">Плати</button></td>
             </tr>
         </tbody>
     </table>
 
 </div>
+
+<payment-modal #paymentModal></payment-modal>

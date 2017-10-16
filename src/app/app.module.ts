@@ -1,3 +1,4 @@
+import { PaymentModalComponent } from './components/modal/paymentModal.component';
 import { SettingsActions } from './store/actions/settings.actions';
 import { SettingsComponent } from './components/common/settings/settings.component';
 import { EditUserComponent } from './components/users/editUser/editUser.component';
@@ -69,7 +70,8 @@ import { MDBSpinningPreloader } from './typescripts/pro/';
     ActiveUsersComponent,
     UserSessionPriceComponent,
     EditUserComponent,
-    SettingsComponent
+    SettingsComponent,
+    PaymentModalComponent
   ],
   imports: [
     NgReduxModule,
