@@ -87,8 +87,11 @@ export class UsersAction {
             .registerUser(user)
             .subscribe(res => {
                 this.ngRedux
-                    .dispatch<IAction>({ type: REGISTER_USER, payload: res });
-                this.router.navigate(['/users', res.obj.id])
+                    .dispatch<IAction>({ 
+                        type: REGISTER_USER, 
+                        payload: res 
+                    });
+                this.router.navigate(['/users', res.obj.id]);
             });
     }
 

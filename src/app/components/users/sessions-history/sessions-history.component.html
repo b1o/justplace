@@ -3,24 +3,28 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Време на започване</th>
-                <th>Време на спиране</th>
-                <th>Време</th>
-                <th>Цена</th>
-                <th>Платено</th>
+                <th class="text-center">#</th>
+                <th class="text-center">Време на започване</th>
+                <th class="text-center">Време на спиране</th>
+                <th class="text-center">Време</th>
+                <th class="text-center">Играчи</th>
+                <th class="text-center">Цена на час</th>
+                <th class="text-center">Цена</th>
+                <th class="text-center">Платено</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let session of sessions; let i = index">
 
-                <th class="align-middle" scope="row">{{i+1}}</th>
-                <td class="align-middle">{{session.startTime | date:'short'}}</td>
-                <td class="align-middle">{{session.endTime | date:'short'}}</td>
-                <td class="align-middle">{{session.duration}}</td>
-                <td class="align-middle">{{session.price}}</td>
-                <td *ngIf="session.paid" class="align-middle">Платено</td>
-                <td *ngIf="!session.paid"><button type="button" class="btn btn-sm btn-cyan waves-light m-0" mdbRippleRadius (click)="paymentModal.open(user, session)">Плати</button></td>
+                <th class="align-middle text-center" scope="row">{{i+1}}</th>
+                <td class="align-middle text-center">{{session.startTime | date:'short'}}</td>
+                <td class="align-middle text-center">{{session.endTime | date:'short'}}</td>
+                <td class="align-middle text-center">{{session.duration}}</td>
+                <td class="align-middle text-center">{{session.userCount}}</td>
+                <td class="align-middle text-center">{{session.pricePerHour | currency:'bgn':true}}</td>
+                <td class="align-middle text-center">{{session.price | currency:'bgn':true}}</td>
+                <td *ngIf="session.paid" class="align-middle text-center">Платено</td>
+                <td *ngIf="!session.paid"><button type="button" class="btn btn-sm btn-cyan waves-light m-0 ml-2" mdbRippleRadius (click)="paymentModal.open(user, session)">Плати</button></td>
             </tr>
         </tbody>
     </table>

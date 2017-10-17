@@ -1,3 +1,4 @@
+import { SettingsActions } from '../../store/actions/settings.actions';
 import { NgRedux } from '@angular-redux/store';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -20,6 +21,7 @@ export class AllUsersComponent {
 
     constructor(
         private usrsAction: UsersAction,
+        private settingsActions: SettingsActions,
         private ngRedux: NgRedux<IAppState>,
         private cd: ChangeDetectorRef
     ) { }
@@ -62,7 +64,7 @@ export class AllUsersComponent {
     ngOnInit() {
         this.updateCurrentTime();
         this.getAllUsers();
-
+        this.settingsActions.getPrice();
     }
 
     ngOnDestroy() {

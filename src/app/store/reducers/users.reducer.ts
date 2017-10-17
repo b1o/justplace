@@ -40,16 +40,17 @@ function getAllUsers(state, action) {
 }
 
 function startUser(state, action) {
-    const result = action.result;
+    const result = action.result.obj;
     const userId = action.userInfo.user.id;
     let users = [];
 
-    if (result.obj) {
+    if (result) {
         users = state.allUsers.map(u => {
-            return u.id === userId ? { ...u, currentSession: result.obj } : u;
+            return u.id === userId ? { ...u, currentSession: result } : u;
         });
+        
 
-        const newState = { ...state, allUsers: users, currentTime: result.obj.now };
+        const newState = { ...state, allUsers: users, currentTime: result.now };
         return newState;
     }
 
@@ -83,16 +84,28 @@ function updateCurrentTime(state, action) {
 }
 
 function registerUser(state, payload) {
-    if (payload) {
-        return { ...state, allUsers: [...state.allUsers, payload] }
+    if (payload.obj) {
+        return { ...state, allUsers: [...state.allUsers, payload.obj] }
     }
 
     return state;
 }
 
 function getUserInfo(state: IUsersState, payload) {
-    if (payload) {
-        return { ...state, selectedUser: payload.obj as UserModel };
+    if (payload.obj) {
+        let user;
+        state.allUsers.map((u) => {
+            if (u['id'] === payload.obj.id) {
+                return user = payload.obj;
+            }
+        })
+        
+        if (!user) {
+            user = payload.obj;
+            return { ...state, allUsers: [ ...state.allUsers, user], selectedUser: user };
+        }
+        
+        return { ...state, selectedUser: user };
     }
 
     return state;
