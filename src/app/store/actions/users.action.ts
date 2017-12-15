@@ -149,4 +149,8 @@ export class UsersAction {
                     });
             })
     }
+
+    editUser (user) {
+        this.usersService.editUsers(user).subscribe(res => this.getUserInfo(user.id));
+    }
 }

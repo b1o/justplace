@@ -65,9 +65,11 @@ export class NetworkService {
 
         const options = { withCredentials: true, headers: headers };
         const data = new FormData();
-        let { name, lastName, email } = body;
-        data.append('dto', new Blob([JSON.stringify({ name, lastName, email })], { type: 'application/json' }));
-        data.append('file', body.photo);
+        let { name, lastName, email, pictureName } = body;
+        data.append('dto', new Blob([JSON.stringify({ name, lastName, email, pictureName })], { type: 'application/json' }));
+        if(body.photo){
+            data.append('file', body.photo);
+        }
         return this.http.post(`${environment.backEndBaseUrl}${url}`, data, options)
             .map(this.extractData.bind(this))
             .catch(err => {

@@ -2,7 +2,8 @@
 
 .circle-avatar {
     /* make it responsive */
-    max-width: 100%;
+    // max-width: 100%;
+    min-width: 120px;
     width: 120px;
     height: 120px;
     display: block;

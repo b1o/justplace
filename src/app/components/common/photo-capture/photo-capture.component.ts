@@ -68,6 +68,7 @@ export class PhotoCaptureComponent implements OnInit, OnDestroy {
     }
 
     public onUploadOutput(event) {
+        this.photoTaken.emit(event.target.files[0]);
         this.output = event.target.files[0];
         const reader = new FileReader();
 

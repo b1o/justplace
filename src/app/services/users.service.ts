@@ -70,4 +70,13 @@ export class UsersService {
     changePage(pageUrl) {
         return this.getAllUsers(pageUrl);
     }
+
+    editUsers(user) {
+        console.log(user)
+        const data = {...user};
+        data.pictureName = user.pictureName;
+        const url = `/users/${user.id}`;
+
+        return this.networkService.postWithFile(url, data);
+    }
 }

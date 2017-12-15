@@ -1,6 +1,6 @@
 import { NgRedux } from '@angular-redux/store';
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 import { UsersAction } from '../../../store/actions/users.action';
 import { IAppState } from '../../../store/index';
