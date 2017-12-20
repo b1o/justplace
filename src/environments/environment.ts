@@ -6,6 +6,6 @@ import { pricePerHour } from '../app/components/modal/stopModal.component';
 
 export const environment = {
   production: false,
-  backEndBaseUrl: "http://localhost:8080/",
+  backEndBaseUrl: "https://localhost:8443/",
   pricePerHour: 5
 };

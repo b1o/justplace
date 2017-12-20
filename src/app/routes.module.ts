@@ -14,7 +14,7 @@ const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'users/active', component: ActiveUsersComponent },
     { path: 'users/new', component: RegisterUserComponent },
-    { path: 'users/:id', component: UserProfileComponent },
+    { path: 'users/:id', component: UserProfileComponent }
 ];
 
 @NgModule({

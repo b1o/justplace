@@ -65,8 +65,8 @@ export class NetworkService {
 
         const options = { withCredentials: true, headers: headers };
         const data = new FormData();
-        let { name, lastName, email, pictureName } = body;
-        data.append('dto', new Blob([JSON.stringify({ name, lastName, email, pictureName })], { type: 'application/json' }));
+        let { name, lastName, email, pictureName,phone } = body;
+        data.append('dto', new Blob([JSON.stringify({ name, lastName, email, pictureName,phone })], { type: 'application/json' }));
         if(body.photo){
             data.append('file', body.photo);
         }

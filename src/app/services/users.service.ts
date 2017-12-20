@@ -63,6 +63,8 @@ export class UsersService {
     registerUser(user: UserModel) {
         const url = 'users/new';
 
+        console.log('from user service ', user)
+
         return this.networkService
             .postWithFile(url, user)
     }

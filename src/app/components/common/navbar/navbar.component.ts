@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Rx';
 import { LayoutActions } from '../../../store/actions/layout.actions';
 import { LoginActions } from '../../../store/actions/login.actions';
 import { IAppState } from '../../../store/index';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'navbar',

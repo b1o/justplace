@@ -4,7 +4,7 @@
 
     <ul *ngIf="isLoggedIn" class="nav navbar-nav nav-flex-icons ml-auto">
         <li class="nav-item" routerLinkActive="active">
-            <div class="nav-link waves-light"><i class="fa fa-dollar text-success"></i> <span class="clearfix d-none d-sm-inline-block">Цена на час: {{price | currency:'bgn':true}}</span></div>
+            <div class="nav-link waves-light"><i class="fa fa-dollar green-text"></i> <span class="clearfix d-none d-sm-inline-block">Цена на час: {{price | currency:'bgn':true}}</span></div>
         </li>
         <li class="nav-item" routerLinkActive="active">
             <a class="nav-link waves-light" routerLink="/users/new" mdbRippleRadius><i class="fa fa-plus text-success"></i> <span class="clearfix d-none d-sm-inline-block">Регистрирай потребител</span></a>
@@ -12,13 +12,13 @@
         <li class="nav-item active">
             <!-- <a class="nav-link waves-light " routerLink="/users/active" mdbRippleRadius><i class="fa fa-users text-success"></i> <span class="clearfix d-none d-sm-inline-block">Активни потребители</span></a> -->
         <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link waves-light" routerLink="/users" mdbRippleRadius><i class="fa fa-users"></i> <span class="clearfix d-none d-sm-inline-block">Потребители</span></a>
+            <a class="nav-link waves-light" routerLink="/users" mdbRippleRadius><i class="fa fa-users lime-text"></i> <span class="clearfix d-none d-sm-inline-block">Потребители</span></a>
         </li>
         <li class="nav-item">
-                <a class="nav-link waves-light" routerLink="/settings" mdbRippleRadius><i class="fa fa-wrench"></i> <span class="clearfix d-none d-sm-inline-block">Настройки</span></a>
+                <a class="nav-link waves-light" routerLink="/settings" mdbRippleRadius><i class="fa fa-wrench grey-text"></i> <span class="clearfix d-none d-sm-inline-block">Настройки</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">Изход</span></a>
+            <a class="nav-link waves-light" (click)="logout()" mdbRippleRadius><i class="fa fa-sign-out text-warning "></i> <span class="clearfix d-none d-sm-inline-block">Изход</span></a>
         </li>
     </ul>
 
