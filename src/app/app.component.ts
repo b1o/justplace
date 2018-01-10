@@ -27,12 +27,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usersAction.getAllUsers('users');
-    this.settingsActions.getPrice();
+    // this.usersAction.getAllUsers('users');
+    // this.settingsActions.getPrice();
 
     this.updateCurrentTime()
   }
 
+  
   ngOnDestroy() {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
